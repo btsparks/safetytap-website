@@ -1,0 +1,35 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-navy text-white/70 py-12">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="flex flex-col md:flex-row justify-between items-start gap-8">
+      <div>
+        <p class="text-white font-bold text-lg">Safety<span class="text-teal">TAP</span></p>
+        <p class="text-sm mt-1">Think. Assess. Proceed.</p>
+        <p class="text-sm mt-4">A <span class="text-white">FieldBridge AI</span> product</p>
+      </div>
+      <div class="flex gap-12">
+        <div>
+          <p class="text-white text-sm font-semibold mb-3">Product</p>
+          <div class="flex flex-col gap-2 text-sm">
+            <a href="/#how-it-works" class="hover:text-teal transition-colors">How It Works</a>
+            <a href="/blog" class="hover:text-teal transition-colors">Blog</a>
+            <a href="/contact" class="hover:text-teal transition-colors">Contact</a>
+          </div>
+        </div>
+        <div>
+          <p class="text-white text-sm font-semibold mb-3">Company</p>
+          <div class="flex flex-col gap-2 text-sm">
+            <a href="/about" class="hover:text-teal transition-colors">About</a>
+            <a href="/privacy" class="hover:text-teal transition-colors">Privacy</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-white/10 mt-8 pt-8 text-sm text-center">
+      &copy; {year} FieldBridge AI. All rights reserved.
+    </div>
+  </div>
+</footer>

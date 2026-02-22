@@ -1,0 +1,67 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Contact" description="Get in touch with the SafetyTAP team. Request a demo or ask us anything about building hazard recognition skills in your crew.">
+  <section class="max-w-3xl mx-auto px-6 py-16">
+    <h1 class="text-3xl font-bold text-navy">Let's Talk</h1>
+    <p class="text-lg text-dark/70 mt-4">Whether you're a safety manager looking to try SafetyTAP with your crew, or you just want to learn more about how it works — reach out.</p>
+
+    <form
+      name="contact"
+      method="POST"
+      data-netlify="true"
+      action="/contact?success=true"
+      class="mt-10 space-y-6"
+    >
+      <input type="hidden" name="form-name" value="contact" />
+
+      <div>
+        <label for="name" class="block text-sm font-medium text-dark mb-1">Name</label>
+        <input type="text" id="name" name="name" required
+          class="w-full border border-gray-300 rounded px-4 py-3 focus:outline-none focus:border-teal" />
+      </div>
+
+      <div>
+        <label for="email" class="block text-sm font-medium text-dark mb-1">Email</label>
+        <input type="email" id="email" name="email" required
+          class="w-full border border-gray-300 rounded px-4 py-3 focus:outline-none focus:border-teal" />
+      </div>
+
+      <div>
+        <label for="company" class="block text-sm font-medium text-dark mb-1">Company</label>
+        <input type="text" id="company" name="company"
+          class="w-full border border-gray-300 rounded px-4 py-3 focus:outline-none focus:border-teal" />
+      </div>
+
+      <div>
+        <label for="role" class="block text-sm font-medium text-dark mb-1">Your Role</label>
+        <select id="role" name="role"
+          class="w-full border border-gray-300 rounded px-4 py-3 focus:outline-none focus:border-teal bg-white">
+          <option value="">Select one</option>
+          <option value="safety-manager">Safety Manager / Director</option>
+          <option value="superintendent">Superintendent</option>
+          <option value="project-manager">Project Manager</option>
+          <option value="field-worker">Field Worker</option>
+          <option value="operations">Operations Leadership</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="message" class="block text-sm font-medium text-dark mb-1">What are you looking for?</label>
+        <textarea id="message" name="message" rows="4"
+          class="w-full border border-gray-300 rounded px-4 py-3 focus:outline-none focus:border-teal"
+          placeholder="Tell us about your crew, your safety challenges, or just ask a question."></textarea>
+      </div>
+
+      <button type="submit" class="bg-teal text-white px-6 py-3 rounded font-medium hover:bg-teal/90 transition-colors">Send Message</button>
+    </form>
+
+    {Astro.url.searchParams.get('success') && (
+      <div class="mt-8 bg-teal/10 border border-teal/20 rounded p-4">
+        <p class="text-teal font-medium">Message sent. We'll get back to you shortly.</p>
+      </div>
+    )}
+  </section>
+</Base>

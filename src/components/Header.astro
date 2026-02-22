@@ -1,0 +1,16 @@
+---
+const currentPath = Astro.url.pathname;
+---
+
+<header class="bg-navy text-white">
+  <nav class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="/" class="text-xl font-bold tracking-tight">
+      Safety<span class="text-teal">TAP</span>
+    </a>
+    <div class="flex items-center gap-8">
+      <a href="/blog" class:list={["text-sm hover:text-teal transition-colors", { 'text-teal': currentPath.startsWith('/blog') }]}>Blog</a>
+      <a href="/about" class:list={["text-sm hover:text-teal transition-colors", { 'text-teal': currentPath === '/about' }]}>About</a>
+      <a href="/contact" class="text-sm bg-teal text-white px-4 py-2 rounded hover:bg-teal/90 transition-colors">Talk to Us</a>
+    </div>
+  </nav>
+</header>

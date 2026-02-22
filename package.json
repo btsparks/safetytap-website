@@ -1,0 +1,19 @@
+{
+  "name": "safetytap-website",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "generate": "node content-engine/generate.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0",
+    "@astrojs/mdx": "^4.0.0",
+    "@astrojs/tailwind": "^6.0.0",
+    "astro": "^5.0.0",
+    "dotenv": "^16.4.7",
+    "tailwindcss": "^3.4.0"
+  }
+}

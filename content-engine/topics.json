@@ -1,0 +1,112 @@
+[
+  {
+    "title": "Why Smart Workers Miss Obvious Hazards — And Why It's Not Their Fault",
+    "slug": "inattentional-blindness-construction",
+    "targetKeyword": "inattentional blindness construction safety",
+    "psychologicalConcept": "Inattentional blindness — the cognitive phenomenon where focused attention causes people to miss stimuli in plain sight",
+    "constructionFraming": "How task-focused carpenters, operators, and ironworkers walk past hazards they'd normally catch because their brain is filtering for task completion, not risk",
+    "researchReferences": ["Simons & Chabris 1999 invisible gorilla", "Mack & Rock 1998"],
+    "safetyTapConnection": "SafetyTAP redirects attention without judgment — a quick prompt that expands what the worker is scanning for, building broader awareness over time",
+    "targetLength": "800-1200 words",
+    "tone": "Accessible, construction-relevant, no academic jargon, respect for the reader's intelligence"
+  },
+  {
+    "title": "The Most Dangerous Phrase on Your Jobsite: 'We've Always Done It This Way'",
+    "slug": "normalization-of-deviance-construction",
+    "targetKeyword": "normalization of deviance construction safety",
+    "psychologicalConcept": "Normalcy bias and normalization of deviance — how the absence of incidents reinforces unsafe conditions",
+    "constructionFraming": "How crews develop blind spots when unsafe conditions persist without consequence, and why the broken feedback loop is the real danger",
+    "researchReferences": ["Diane Vaughan normalization of deviance", "Kahneman availability heuristic"],
+    "safetyTapConnection": "SafetyTAP interrupts drift by consistently surfacing conditions that have been normalized, recalibrating the baseline",
+    "targetLength": "800-1200 words",
+    "tone": "Accessible, construction-relevant, no academic jargon, respect for the reader's intelligence"
+  },
+  {
+    "title": "Why Nobody Speaks Up — The Bystander Effect on Construction Crews",
+    "slug": "bystander-effect-construction-safety",
+    "targetKeyword": "bystander effect workplace safety",
+    "psychologicalConcept": "Bystander effect and social conformity — why crew size inversely correlates with hazard reporting",
+    "constructionFraming": "The social cost of raising a concern on a crew, why experienced workers stay quiet, and how crew dynamics suppress hazard observations",
+    "researchReferences": ["Latane & Darley 1968", "Asch conformity experiments"],
+    "safetyTapConnection": "SafetyTAP is a private channel — no crew watching, no perceived judgment, removing the social cost of hazard recognition",
+    "targetLength": "800-1200 words",
+    "tone": "Accessible, construction-relevant, no academic jargon, respect for the reader's intelligence"
+  },
+  {
+    "title": "Your Toolbox Talk Isn't Working. Here's the Science Why.",
+    "slug": "toolbox-talk-effectiveness",
+    "targetKeyword": "toolbox talk effectiveness safety training",
+    "psychologicalConcept": "Transfer of learning and contextual encoding — why information delivered in one context doesn't transfer to another",
+    "constructionFraming": "Why safety information delivered in a trailer at 6am doesn't transfer to a task at 2pm, and what point-of-task intervention looks like",
+    "researchReferences": ["Godden & Baddeley 1975 context-dependent memory", "Thorndike transfer of learning"],
+    "safetyTapConnection": "SafetyTAP delivers insights at the point of task — when the worker is standing in front of the hazard, not hours before in a trailer",
+    "targetLength": "800-1200 words",
+    "tone": "Accessible, construction-relevant, no academic jargon, respect for the reader's intelligence"
+  },
+  {
+    "title": "How Experienced Workers Actually Develop 'The Eye'",
+    "slug": "expert-pattern-recognition-construction",
+    "targetKeyword": "hazard recognition skills experienced workers",
+    "psychologicalConcept": "Expert pattern recognition and deliberate practice — how competence develops through accumulated exposure",
+    "constructionFraming": "The cognitive science behind how veterans 'just see things' that new workers miss — it's not intuition, it's accumulated pattern matching",
+    "researchReferences": ["Gary Klein recognition-primed decision making", "K. Anders Ericsson deliberate practice"],
+    "safetyTapConnection": "SafetyTAP accelerates pattern recognition development by providing targeted observations that build the mental models experienced workers have",
+    "targetLength": "800-1200 words",
+    "tone": "Accessible, construction-relevant, no academic jargon, respect for the reader's intelligence"
+  },
+  {
+    "title": "Compliance vs. Competence: Why Your Safety Metrics Might Be Lying to You",
+    "slug": "safety-leading-indicators-compliance",
+    "targetKeyword": "safety leading indicators construction",
+    "psychologicalConcept": "Lagging vs leading indicators and Goodhart's Law — when a measure becomes a target, it ceases to be a good measure",
+    "constructionFraming": "Why counting JHAs completed and observations logged tells you about compliance, not competence — and what to measure instead",
+    "researchReferences": ["Goodhart's Law", "Heinrich safety pyramid", "Andrew Hopkins organizational safety"],
+    "safetyTapConnection": "SafetyTAP engagement patterns are a leading indicator — workers choosing to check their own work shows developing competence",
+    "targetLength": "800-1200 words",
+    "tone": "Accessible, construction-relevant, no academic jargon, respect for the reader's intelligence"
+  },
+  {
+    "title": "The Psychology of 'It Won't Happen to Me'",
+    "slug": "optimism-bias-construction-safety",
+    "targetKeyword": "optimism bias workplace safety risk perception",
+    "psychologicalConcept": "Optimism bias and risk compensation — why personal risk assessment is systematically inaccurate",
+    "constructionFraming": "Why workers underestimate their own risk even when they correctly identify hazards for others, and how experience can make this worse",
+    "researchReferences": ["Weinstein 1980 unrealistic optimism", "Tali Sharot optimism bias"],
+    "safetyTapConnection": "SafetyTAP makes consequences tangible and personal without lecturing — connecting the specific condition to the specific outcome",
+    "targetLength": "800-1200 words",
+    "tone": "Accessible, construction-relevant, no academic jargon, respect for the reader's intelligence"
+  },
+  {
+    "title": "What a Tap on the Shoulder Can Do That a Safety Manual Can't",
+    "slug": "self-efficacy-safety-behavior",
+    "targetKeyword": "self-efficacy safety behavior construction",
+    "psychologicalConcept": "Self-efficacy theory — workers who believe their actions can prevent incidents engage in more proactive safety behavior",
+    "constructionFraming": "The power of brief, specific, timely feedback in building the belief that your actions matter, and why manuals fail at this",
+    "researchReferences": ["Bandura 1977 self-efficacy", "mastery experiences research"],
+    "safetyTapConnection": "SafetyTAP creates micro-mastery experiences in every interaction — confirming instincts, expanding awareness, and framing the worker as the agent of their own safety",
+    "targetLength": "800-1200 words",
+    "tone": "Accessible, construction-relevant, no academic jargon, respect for the reader's intelligence"
+  },
+  {
+    "title": "Think. Assess. Proceed. — Building a Practice, Not a Program",
+    "slug": "building-safety-habits-construction",
+    "targetKeyword": "safety culture change construction",
+    "psychologicalConcept": "Habit formation and behavioral scaffolding — why programs fail and practices stick",
+    "constructionFraming": "The difference between telling people what to do and helping them develop the capacity to see for themselves, and why the construction industry needs the latter",
+    "researchReferences": ["James Clear atomic habits", "BJ Fogg tiny habits", "Vygotsky zone of proximal development"],
+    "safetyTapConnection": "SafetyTAP is designed as a practice — like scaffolding, it supports the work until the structure can stand on its own",
+    "targetLength": "800-1200 words",
+    "tone": "Accessible, construction-relevant, no academic jargon, respect for the reader's intelligence"
+  },
+  {
+    "title": "The New Worker Problem — And Why It's Actually a Design Problem",
+    "slug": "new-worker-safety-onboarding",
+    "targetKeyword": "new worker safety construction onboarding",
+    "psychologicalConcept": "Dunning-Kruger effect, onboarding gaps, and learning curves — new workers don't lack intelligence, they lack reps",
+    "constructionFraming": "Reframing 'the new guy problem' as a system design failure — the current system doesn't provide enough supported exposure to develop competence quickly",
+    "researchReferences": ["Kruger & Dunning 1999", "learning curve research", "expertise development"],
+    "safetyTapConnection": "SafetyTAP provides the supported reps that accelerate development — each interaction is a micro-experience that builds the mental library",
+    "targetLength": "800-1200 words",
+    "tone": "Accessible, construction-relevant, no academic jargon, respect for the reader's intelligence"
+  }
+]
