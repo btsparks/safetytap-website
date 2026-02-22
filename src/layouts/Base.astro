@@ -5,17 +5,20 @@ import '../styles/global.css';
 
 interface Props {
   title: string;
+  metaTitle?: string; // SEO: allows pages to set keyword-optimized title tags independently
   description?: string;
   keywords?: string[];
 }
 
 const {
   title,
-  description = 'SafetyTAP builds hazard recognition skills in construction workers. Think. Assess. Proceed.',
+  metaTitle,
+  description = 'SafetyTAP builds hazard recognition skills in construction workers — in 30 seconds over text, no app required.',
   keywords = [],
 } = Astro.props;
 
-const fullTitle = title === 'SafetyTAP' ? title : `${title} | SafetyTAP`;
+// SEO: metaTitle overrides default title construction when a page needs keyword-first formatting
+const fullTitle = metaTitle || (title === 'SafetyTAP' ? title : `${title} | SafetyTAP`);
 ---
 
 <!doctype html>

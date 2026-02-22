@@ -7,7 +7,12 @@ const posts = (await getCollection('blog'))
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 ---
 
-<Base title="Blog" description="Research-backed insights on hazard recognition psychology, safety culture, and how construction workers develop the skills to see what others miss.">
+<!-- Step 1: Meta — title 55 chars, description 144 chars — primary keywords in both -->
+<Base
+  title="Blog"
+  metaTitle="Hazard Recognition Research & Insights | SafetyTAP Blog"
+  description="Research-backed articles on how workers develop hazard recognition, why safety programs fail, and what actually changes behavior on the job site."
+>
   <section class="max-w-3xl mx-auto px-6 py-16 md:py-24">
     <p class="text-sm font-semibold tracking-widest uppercase text-teal mb-3">From the Blog</p>
     <h1 class="font-display text-3xl md:text-4xl font-bold text-navy tracking-tight">The Science of Seeing</h1>

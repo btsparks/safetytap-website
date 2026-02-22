@@ -8,9 +8,10 @@ interface Props {
   readTime: string;
   tags: string[];
   seoKeywords?: string[];
+  metaTitle?: string; // SEO: allows blog posts to override the auto-generated title tag
 }
 
-const { title, description, date, readTime, tags, seoKeywords = [] } = Astro.props;
+const { title, description, date, readTime, tags, seoKeywords = [], metaTitle } = Astro.props;
 
 const formattedDate = new Date(date).toLocaleDateString('en-US', {
   year: 'numeric',
@@ -19,7 +20,7 @@ const formattedDate = new Date(date).toLocaleDateString('en-US', {
 });
 ---
 
-<Base title={title} description={description} keywords={seoKeywords}>
+<Base title={title} metaTitle={metaTitle} description={description} keywords={seoKeywords}>
   <article class="max-w-3xl mx-auto px-6 py-16 md:py-24">
     <header class="mb-10">
       <div class="flex items-center gap-4 text-sm text-dark/50 mb-4">

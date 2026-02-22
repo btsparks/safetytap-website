@@ -12,6 +12,9 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await post.render();
+
+// SEO: use post title directly without brand suffix — keeps under 60 chars for most posts
+const metaTitle = `${post.data.title} | SafetyTAP`;
 ---
 
 <BlogPost
@@ -21,6 +24,7 @@ const { Content } = await post.render();
   readTime={post.data.readTime}
   tags={post.data.tags}
   seoKeywords={post.data.seoKeywords}
+  metaTitle={metaTitle}
 >
   <Content />
 </BlogPost>

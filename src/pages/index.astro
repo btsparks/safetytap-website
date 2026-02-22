@@ -8,7 +8,12 @@ const posts = (await getCollection('blog'))
   .slice(0, 3);
 ---
 
-<Base title="SafetyTAP" description="SafetyTAP builds the hazard recognition skills your crew needs — in 30 seconds, over text, no training required. Think. Assess. Proceed.">
+<!-- Step 1: Meta tags — keyword-first title (50 chars), description with keyword + benefit + CTA (133 chars) -->
+<Base
+  title="SafetyTAP"
+  metaTitle="Hazard Recognition Training That Works | SafetyTAP"
+  description="SafetyTAP builds hazard recognition skills in 30 seconds — no app, no training, just a photo and a text. Built for construction crews."
+>
 
   <!-- Section 1: Hero -->
   <section class="relative bg-navy-deep py-28 md:py-36 overflow-hidden text-white">
@@ -19,24 +24,38 @@ const posts = (await getCollection('blog'))
     <!-- Content -->
     <div class="relative z-10 max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
       <div class="flex-1 max-w-2xl">
-        <h1 class="font-display text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-tight">Think. Assess. Proceed.</h1>
-        <p class="mt-6 text-lg md:text-xl text-white/80 leading-relaxed max-w-lg">SafetyTAP builds the hazard recognition skills your crew needs — in 30 seconds, over text, no training required.</p>
+        <!-- Step 2: SEO H1 with primary keyword "hazard recognition" — 9 words, outcome-focused -->
+        <h1 class="font-display text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-tight">Build Hazard Recognition Skills Your Crew Will Actually Use</h1>
+        <!-- Step 2: "Think. Assess. Proceed." moved to secondary brand line below H1 -->
+        <p class="mt-4 text-lg text-teal font-semibold tracking-wide uppercase">Think. Assess. Proceed.</p>
+        <!-- Step 2: Subheading tightened — front-loads "30 seconds", specifies "construction crews" per skill file -->
+        <p class="mt-4 text-lg md:text-xl text-white/80 leading-relaxed max-w-lg">In 30 seconds, your crew texts a photo and gets one specific safety observation back — the kind an experienced pro would make on-site. No app, no training, no friction.</p>
+
+        <!-- Step 5: Social proof placeholder — hero section -->
+        <div class="mt-6 border-l-2 border-teal/40 pl-4">
+          <!-- [PLACEHOLDER — replace with real customer quote] -->
+          <p class="text-white/60 text-sm italic">"We saw a change in how crews talked about hazards within the first month."</p>
+          <p class="text-white/40 text-xs mt-1">— [PLACEHOLDER] Safety Director, Mid-size General Contractor</p>
+        </div>
+
         <div class="flex gap-4 mt-8">
+          <!-- Step 6: CTA "See How It Works" → "See a Live Example" — specific action per skill file §5.1 -->
           <a href="#how-it-works"
              class="inline-flex items-center gap-2 bg-teal hover:bg-teal-light
                     text-white font-semibold text-base
                     px-7 py-3.5 rounded-lg
                     shadow-lg shadow-teal/20
                     transition-all duration-200 hover:shadow-xl hover:shadow-teal/30 hover:-translate-y-0.5">
-            See How It Works
+            See a Live Example
           </a>
+          <!-- Step 6: CTA "Talk to Us" → "Request a Demo" — specific action over generic label -->
           <a href="/contact"
              class="inline-flex items-center gap-2
                     border border-white/30 hover:border-white/60
                     text-white/90 hover:text-white font-medium text-base
                     px-7 py-3.5 rounded-lg
                     transition-all duration-200 hover:bg-white/5">
-            Talk to Us
+            Request a Demo
           </a>
         </div>
       </div>
@@ -56,28 +75,34 @@ const posts = (await getCollection('blog'))
     </div>
   </section>
 
-  <!-- Section 2: The Problem -->
+  <!-- Section 2: The Problem — H2 marked ✓ in skill file, keep exactly -->
   <section class="py-16 md:py-24 bg-white" data-animate>
     <div class="max-w-3xl mx-auto px-6">
       <p class="text-sm font-semibold tracking-widest uppercase text-teal mb-3">The Problem</p>
+      <!-- ✓ Keep exactly per skill file §5.2 -->
       <h2 class="font-display text-3xl md:text-4xl font-bold text-navy leading-tight tracking-tight">Your safety program creates compliance. It doesn't create competence.</h2>
       <div class="mt-8 space-y-4 text-lg text-dark/80 leading-relaxed">
-        <p>Your crew fills out JHAs because they have to. They sit through toolbox talks because it's on the schedule. They check the boxes on the observation card because someone's counting. And none of it changes how they actually see hazards when they're standing in front of the task.</p>
-        <p>The problem isn't the people. It's that every tool in the safety industry — BBS programs, observation platforms, digital checklists — was designed to document compliance, not develop competence. They assume the worker already knows what to look for. Most of the time, that assumption is wrong.</p>
+        <!-- Paragraph 1: Keep JHA/toolbox talk examples — specific and strong per skill file -->
+        <p>Your crew fills out JHAs because they have to. They sit through toolbox talks because it's on the schedule. They check the boxes on the observation card because someone's counting. None of it changes how they actually see hazards when they're standing in front of the task.</p>
+        <!-- Paragraph 2: shortened per skill file §5.2 — added "hazard recognition" keyword naturally -->
+        <p>The problem isn't the people. Every safety observation program on the market was designed to document compliance, not develop hazard recognition. They assume the worker already knows what to look for. Most of the time, that assumption is wrong.</p>
+        <!-- ✓ Keep exactly per skill file §5.2 -->
         <p>It's not that your program is bad. It's that the problem is deeper than any program can reach.</p>
       </div>
     </div>
   </section>
 
-  <!-- Section 3: The Insight -->
+  <!-- Section 3: The Insight — H2 marked "Strong. Keep it." in skill file -->
   <section class="py-16 md:py-24 bg-teal-pale" data-animate>
     <div class="max-w-3xl mx-auto px-6">
       <p class="text-sm font-semibold tracking-widest uppercase text-teal mb-3">Our Approach</p>
       <h2 class="font-display text-3xl md:text-4xl font-bold text-navy leading-tight tracking-tight">Hazard recognition isn't a checklist. It's a skill.</h2>
       <div class="mt-8 space-y-4 text-lg text-dark/80 leading-relaxed">
-        <p>Experienced workers develop what the industry calls "the eye" — the ability to walk onto a site and immediately see what's off. It's not magic. It's pattern recognition built through years of exposure, near-misses, and mentoring from people who've been around long enough to know what matters.</p>
+        <!-- Tightened ~30% per skill file §5.3 — kept scaffolding metaphor, added "hazard identification skills" keyword -->
+        <p>Experienced workers develop what the industry calls "the eye" — the ability to walk onto a site and immediately spot what's off. It's not magic. It's hazard identification skills built through years of exposure and mentoring from people who know what matters.</p>
         <p>SafetyTAP accelerates that process. Like scaffolding on a building — you erect it to support the work, and you take it down when the structure can stand on its own.</p>
       </div>
+      <!-- ✓ Keep pullquote — "gold" per skill file §5.3 -->
       <blockquote class="relative pl-8 py-2 my-8 border-l-4 border-teal">
         <span class="absolute -left-1 -top-3 text-5xl text-teal/20 font-serif leading-none select-none">"</span>
         <p class="text-lg md:text-xl italic font-medium text-navy leading-relaxed">A worker who stops using SafetyTAP because they no longer need it is our greatest success.</p>
@@ -85,16 +110,18 @@ const posts = (await getCollection('blog'))
     </div>
   </section>
 
-  <!-- Section 4: How It Works -->
+  <!-- Section 4: How It Works — H2 marked ✓ in skill file, keep exactly -->
   <section id="how-it-works" class="py-16 md:py-24 bg-white" data-animate>
     <div class="max-w-5xl mx-auto px-6">
       <p class="text-sm font-semibold tracking-widest uppercase text-teal mb-3 text-center">How It Works</p>
+      <!-- ✓ Keep exactly per skill file §5.4 -->
       <h2 class="font-display text-3xl md:text-4xl font-bold text-navy text-center leading-tight tracking-tight">30 seconds. One text. Zero friction.</h2>
       <div class="mt-12 grid md:grid-cols-3 gap-8">
         <div class="text-center">
           <div class="w-12 h-12 rounded-full bg-teal/10 border-2 border-teal/30 flex items-center justify-center mx-auto text-teal font-bold font-display text-lg">
             1
           </div>
+          <!-- ✓ Keep per skill file §5.4 -->
           <h3 class="text-lg font-semibold leading-snug text-navy mt-4">Take a photo</h3>
           <p class="text-dark/70 mt-2 text-base leading-relaxed">Worker snaps a photo of their task or work area. Takes 5 seconds.</p>
         </div>
@@ -102,17 +129,20 @@ const posts = (await getCollection('blog'))
           <div class="w-12 h-12 rounded-full bg-teal/10 border-2 border-teal/30 flex items-center justify-center mx-auto text-teal font-bold font-display text-lg">
             2
           </div>
+          <!-- ✓ Keep per skill file §5.4 -->
           <h3 class="text-lg font-semibold leading-snug text-navy mt-4">Send it to SafetyTAP</h3>
-          <p class="text-dark/70 mt-2 text-base leading-relaxed">Text the photo to the SafetyTAP bot on Telegram. No app to download, no account to create.</p>
+          <p class="text-dark/70 mt-2 text-base leading-relaxed">Text the photo to SafetyTAP on Telegram. No app to download, no account to create.</p>
         </div>
         <div class="text-center">
           <div class="w-12 h-12 rounded-full bg-teal/10 border-2 border-teal/30 flex items-center justify-center mx-auto text-teal font-bold font-display text-lg">
             3
           </div>
-          <h3 class="text-lg font-semibold leading-snug text-navy mt-4">Get a specific insight</h3>
-          <p class="text-dark/70 mt-2 text-base leading-relaxed">A brief, expert-level observation about something in the photo they probably haven't considered.</p>
+          <!-- Step 3 rewritten per skill file §5.4 — made the insight more concrete -->
+          <h3 class="text-lg font-semibold leading-snug text-navy mt-4">Get one specific observation</h3>
+          <p class="text-dark/70 mt-2 text-base leading-relaxed">In seconds, SafetyTAP responds with one thing to check — the kind of observation an experienced safety pro would make standing next to you.</p>
         </div>
       </div>
+      <!-- ✓ Keep exactly per skill file §5.4 -->
       <p class="text-center text-dark/60 mt-8 text-base leading-relaxed">No app to download. No account to create. No training required. Just text the number.</p>
     </div>
   </section>
@@ -121,27 +151,34 @@ const posts = (await getCollection('blog'))
   <section class="py-16 md:py-24 bg-light" data-animate>
     <div class="max-w-5xl mx-auto px-6">
       <p class="text-sm font-semibold tracking-widest uppercase text-teal mb-3 text-center">The Science</p>
-      <h2 class="font-display text-3xl md:text-4xl font-bold text-navy text-center leading-tight tracking-tight">Built on research, not assumptions.</h2>
+      <!-- H2 updated with keyword per skill file §5.5 — "hazard recognition" added naturally -->
+      <h2 class="font-display text-3xl md:text-4xl font-bold text-navy text-center leading-tight tracking-tight">The science behind better hazard recognition</h2>
       <div class="mt-12 grid md:grid-cols-2 gap-8">
+        <!-- Step 3: Research cards — added SafetyTAP connection line to each per skill file §5.5 -->
         <div class="bg-white border border-gray-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-200 group border-l-4 border-l-transparent hover:border-l-teal">
           <h3 class="text-base font-semibold text-navy mb-2 group-hover:text-teal transition-colors">Inattentional Blindness</h3>
-          <p class="text-sm text-dark/70 leading-relaxed">Workers focused on their task literally cannot see hazards outside their focus area — the brain filters them out.</p>
+          <!-- Kept existing description, added product connection per skill file §5.5 -->
+          <p class="text-sm text-dark/70 leading-relaxed">Workers focused on their task literally cannot see hazards outside their focus area — the brain filters them out. SafetyTAP breaks that tunnel vision with one targeted observation before the task begins.</p>
         </div>
         <div class="bg-white border border-gray-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-200 group border-l-4 border-l-transparent hover:border-l-teal">
           <h3 class="text-base font-semibold text-navy mb-2 group-hover:text-teal transition-colors">Self-Efficacy</h3>
-          <p class="text-sm text-dark/70 leading-relaxed">Workers who believe their actions can prevent incidents engage in more proactive safety behavior. Confidence drives competence.</p>
+          <!-- Kept existing, added confidence-building connection per skill file §5.5 -->
+          <p class="text-sm text-dark/70 leading-relaxed">Workers who believe their actions can prevent incidents engage in more proactive safety behavior. Confidence drives competence. Each SafetyTAP interaction builds that confidence through specific, actionable feedback.</p>
         </div>
         <div class="bg-white border border-gray-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-200 group border-l-4 border-l-transparent hover:border-l-teal">
           <h3 class="text-base font-semibold text-navy mb-2 group-hover:text-teal transition-colors">Normalcy Bias</h3>
-          <p class="text-sm text-dark/70 leading-relaxed">When unsafe conditions persist without incident, the brain reclassifies them as normal. "We've always done it this way" is the result.</p>
+          <!-- Kept "We've always done it this way" per skill file ✓, added product connection -->
+          <p class="text-sm text-dark/70 leading-relaxed">When unsafe conditions persist without incident, the brain reclassifies them as normal. "We've always done it this way" is the result. SafetyTAP surfaces what familiarity has made invisible.</p>
         </div>
         <div class="bg-white border border-gray-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-200 group border-l-4 border-l-transparent hover:border-l-teal">
           <h3 class="text-base font-semibold text-navy mb-2 group-hover:text-teal transition-colors">Bystander Effect</h3>
+          <!-- ✓ Already has product connection per skill file §5.5 — kept as-is -->
           <p class="text-sm text-dark/70 leading-relaxed">The larger the crew, the less likely anyone is to speak up about a concern. SafetyTAP is a private channel that removes the social cost.</p>
         </div>
       </div>
       <p class="text-center mt-8">
-        <a href="/blog" class="text-teal hover:text-teal-light font-medium underline-offset-2 hover:underline transition-colors">Explore the research on our blog</a>
+        <!-- Step 6: CTA replaced per skill file §5.5 — keyword-rich anchor text instead of generic -->
+        <a href="/blog" class="text-teal hover:text-teal-light font-medium underline-offset-2 hover:underline transition-colors">Read: Why Workers Miss Hazards — And What Actually Helps</a>
       </p>
     </div>
   </section>
@@ -152,14 +189,16 @@ const posts = (await getCollection('blog'))
       <p class="text-sm font-semibold tracking-widest uppercase text-teal mb-3">What's Different</p>
       <h2 class="font-display text-3xl md:text-4xl font-bold text-navy leading-tight tracking-tight">Not another program. A practice.</h2>
       <div class="mt-8 space-y-4 text-lg text-dark/80 leading-relaxed">
-        <p>Every safety technology on the market does one of two things: it automates compliance documentation, or it provides a digital checklist. SafetyTAP does neither.</p>
+        <!-- Added "hazard recognition training" and "safety observation program" keywords per skill file §5.6 -->
+        <p>Every safety observation program on the market does one of two things: automates compliance documentation or provides a digital checklist. SafetyTAP does neither.</p>
         <p>Observation platforms assume the worker already knows what to look for. Training platforms deliver content disconnected from the task. Wearables monitor the environment on the worker's behalf — zero cognitive development.</p>
-        <p>SafetyTAP is the only tool that operates at the individual cognitive level, at the point of task, with zero friction. The output isn't a report or a compliance record. The output is a worker who's better at their job tomorrow than they were today.</p>
+        <!-- ✓ Keep final lines per skill file §5.6 — "best lines in this section" -->
+        <p>SafetyTAP is the only hazard recognition training that operates at the individual cognitive level, at the point of task, with zero friction. The output isn't a report or a compliance record. The output is a worker who's better at their job tomorrow than they were today.</p>
       </div>
     </div>
   </section>
 
-  <!-- Section 7: For Safety Managers -->
+  <!-- Section 7: For Safety Managers / Bottom CTA -->
   <section class="relative py-24 md:py-32 text-white overflow-hidden">
     <!-- Gradient background -->
     <div class="absolute inset-0 bg-gradient-to-br from-navy-deep via-navy to-navy-mid pointer-events-none"></div>
@@ -167,18 +206,28 @@ const posts = (await getCollection('blog'))
       <p class="text-sm font-semibold tracking-widest uppercase text-teal mb-3">Get Started</p>
       <h2 class="font-display text-3xl md:text-4xl font-bold leading-tight tracking-tight">Give your crew a tool they'll actually use.</h2>
       <div class="mt-8 space-y-4 text-lg text-white/80 leading-relaxed">
-        <p>Your people aren't going to fill out another form. They're not going to download another app. They're not going to sit through another training module and pretend to pay attention.</p>
-        <p>But they will text a photo — because it takes 10 seconds and it gives them something useful back. Something specific. Something that makes them better at what they do.</p>
+        <!-- Trimmed from 3 "they're not going to" to 2 per skill file §5.7, added one positive -->
+        <p>Your people aren't going to download another app. They're not going to sit through another training module and pretend to pay attention. But they will text a photo — because it takes 10 seconds and gives them something useful back.</p>
+        <!-- ✓ Keep "leading indicator" line per skill file §5.7 -->
         <p>SafetyTAP gives you a leading indicator that actually leads. Not "observations completed," but actual cognitive development in the people doing the work.</p>
       </div>
+
+      <!-- Step 5: Social proof placeholder — bottom CTA section -->
+      <div class="mt-6 border-l-2 border-teal/40 pl-4">
+        <!-- [PLACEHOLDER — replace with real customer quote] -->
+        <p class="text-white/60 text-sm italic">"Within two weeks, our foremen started referencing SafetyTAP observations in their morning huddles — without being asked."</p>
+        <p class="text-white/40 text-xs mt-1">— [PLACEHOLDER] VP of Operations, Specialty Subcontractor, Southeast</p>
+      </div>
+
       <div class="mt-8">
+        <!-- Step 6: CTA "Let's Talk" → "Talk to Us About Your Crew" — specific action with audience per skill file §5.7 -->
         <a href="/contact"
            class="inline-flex items-center gap-2 bg-teal hover:bg-teal-light
                   text-white font-semibold text-base
                   px-7 py-3.5 rounded-lg
                   shadow-lg shadow-teal/20
                   transition-all duration-200 hover:shadow-xl hover:shadow-teal/30 hover:-translate-y-0.5">
-          Let's Talk
+          Talk to Us About Your Crew
         </a>
       </div>
     </div>
@@ -190,12 +239,14 @@ const posts = (await getCollection('blog'))
       <div class="max-w-5xl mx-auto px-6">
         <p class="text-sm font-semibold tracking-widest uppercase text-teal mb-3 text-center">From the Blog</p>
         <h2 class="font-display text-3xl md:text-4xl font-bold text-navy text-center leading-tight tracking-tight">The Science of Seeing</h2>
+        <!-- ✓ Subhead kept — contains "hazard recognition" keyword per skill file §5.8 -->
         <p class="text-center text-dark/60 mt-2 text-base leading-relaxed">Research-backed insights on how workers develop hazard recognition</p>
         <div class="mt-12 grid md:grid-cols-3 gap-8">
           {posts.map((post) => (
             <a href={`/blog/${post.slug}`} class="group bg-white border border-gray-100 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
               <div class="h-1 bg-gradient-to-r from-teal to-teal-light"></div>
               <div class="p-6">
+                <!-- ✓ Blog card title kept — "Excellent headline" per skill file §5.8 -->
                 <h3 class="text-base font-semibold text-navy group-hover:text-teal transition-colors">{post.data.title}</h3>
                 <p class="text-dark/60 text-sm mt-2 leading-relaxed">{post.data.description}</p>
                 <p class="text-teal text-sm mt-4 font-medium">{post.data.readTime} read</p>
@@ -204,11 +255,59 @@ const posts = (await getCollection('blog'))
           ))}
         </div>
         <p class="text-center mt-8">
-          <a href="/blog" class="text-teal hover:text-teal-light font-medium underline-offset-2 hover:underline transition-colors">View all posts</a>
+          <!-- Step 6: CTA "View all posts" → specific action with context -->
+          <a href="/blog" class="text-teal hover:text-teal-light font-medium underline-offset-2 hover:underline transition-colors">Read More Safety Research</a>
         </p>
       </div>
     </section>
   )}
+
+  <!-- Step 4: FAQ Section — 6 questions targeting long-tail keywords from skill file Part 4 -->
+  <section class="py-16 md:py-24 bg-white" data-animate>
+    <div class="max-w-3xl mx-auto px-6">
+      <p class="text-sm font-semibold tracking-widest uppercase text-teal mb-3 text-center">Common Questions</p>
+      <h2 class="font-display text-3xl md:text-4xl font-bold text-navy text-center leading-tight tracking-tight">Frequently Asked Questions</h2>
+      <div class="mt-12 space-y-8">
+
+        <!-- FAQ 1: targets "construction safety software" + "safety training that actually works" -->
+        <div class="border-b border-gray-100 pb-6">
+          <h3 class="text-lg font-semibold text-navy">How is SafetyTAP different from a safety app?</h3>
+          <p class="text-dark/70 mt-3 leading-relaxed">Safety apps digitize paperwork — JHAs, observation cards, incident reports. They document compliance. SafetyTAP develops a skill. Workers text a photo and get back one specific observation that trains them to see hazards they were missing. The output isn't a form. It's a worker who gets better every day.</p>
+        </div>
+
+        <!-- FAQ 2: targets "safety training that actually works" -->
+        <div class="border-b border-gray-100 pb-6">
+          <h3 class="text-lg font-semibold text-navy">Does it require training to set up?</h3>
+          <p class="text-dark/70 mt-3 leading-relaxed">No. Workers text a photo to a number on Telegram. There is no app to download, no account to create, no login to remember. Setup takes under a minute. If your crew can send a text message, they can use SafetyTAP.</p>
+        </div>
+
+        <!-- FAQ 3: targets "construction site safety" -->
+        <div class="border-b border-gray-100 pb-6">
+          <h3 class="text-lg font-semibold text-navy">What industries is SafetyTAP designed for?</h3>
+          <p class="text-dark/70 mt-3 leading-relaxed">SafetyTAP was built for construction — general contractors, specialty subs, and industrial facilities where hazard recognition at the point of task matters most. The system understands scaffolding, excavation, electrical work, confined spaces, and dozens of other construction-specific scenarios.</p>
+        </div>
+
+        <!-- FAQ 4: targets "how to improve hazard recognition on construction sites" -->
+        <div class="border-b border-gray-100 pb-6">
+          <h3 class="text-lg font-semibold text-navy">How do workers actually use it on the job site?</h3>
+          <p class="text-dark/70 mt-3 leading-relaxed">Before starting a task, a worker snaps a photo of their work area and texts it to SafetyTAP. Within seconds, they get back one specific observation — something in the photo they probably haven't considered. The whole interaction takes about 30 seconds. No forms, no checklists, no supervisor involved.</p>
+        </div>
+
+        <!-- FAQ 5: targets "why workers miss obvious hazards" + "what is inattentional blindness in safety" -->
+        <div class="border-b border-gray-100 pb-6">
+          <h3 class="text-lg font-semibold text-navy">What does the AI actually tell workers?</h3>
+          <p class="text-dark/70 mt-3 leading-relaxed">SafetyTAP delivers one brief, specific observation grounded in the photo the worker sent — not a generic checklist, not a warning label. It might point out that wind loads increase faster than expected above grade, or that a particular material combination creates a slip hazard in morning dew. The kind of thing a seasoned safety pro would mention in passing.</p>
+        </div>
+
+        <!-- FAQ 6: targets "leading indicators for construction safety" + "proactive safety metrics" -->
+        <div>
+          <h3 class="text-lg font-semibold text-navy">Is SafetyTAP a compliance tool or a training tool?</h3>
+          <p class="text-dark/70 mt-3 leading-relaxed">Neither, exactly. Compliance tools document what happened. Training tools deliver content in a classroom. SafetyTAP builds a cognitive skill at the point of task — hazard recognition that develops over 2-4 weeks of daily use. It gives safety managers a leading indicator that actually measures whether workers are getting better at seeing risk, not just completing forms.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
 
 </Base>
 

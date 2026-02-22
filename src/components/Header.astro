@@ -16,12 +16,13 @@ const currentPath = Astro.url.pathname;
       <div class="flex items-center gap-8">
         <a href="/blog" class:list={["text-sm text-white/80 hover:text-teal transition-colors", { 'text-teal': currentPath.startsWith('/blog') }]}>Blog</a>
         <a href="/about" class:list={["text-sm text-white/80 hover:text-teal transition-colors", { 'text-teal': currentPath === '/about' }]}>About</a>
+        <!-- Step 6: CTA "Talk to Us" → "Request a Demo" — specific action per skill file -->
         <a href="/contact"
            class="bg-teal hover:bg-teal-light text-white font-semibold
                   text-sm px-5 py-2.5 rounded-lg
                   shadow-sm shadow-teal/20
                   transition-all duration-200">
-          Talk to Us
+          Request a Demo
         </a>
       </div>
     </div>
