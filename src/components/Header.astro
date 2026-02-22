@@ -2,15 +2,37 @@
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="bg-navy text-white">
-  <nav class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-    <a href="/" class="text-xl font-bold tracking-tight">
-      Safety<span class="text-teal">TAP</span>
-    </a>
-    <div class="flex items-center gap-8">
-      <a href="/blog" class:list={["text-sm hover:text-teal transition-colors", { 'text-teal': currentPath.startsWith('/blog') }]}>Blog</a>
-      <a href="/about" class:list={["text-sm hover:text-teal transition-colors", { 'text-teal': currentPath === '/about' }]}>About</a>
-      <a href="/contact" class="text-sm bg-teal text-white px-4 py-2 rounded hover:bg-teal/90 transition-colors">Talk to Us</a>
+<header>
+  <nav id="main-nav"
+       class="fixed top-0 left-0 right-0 z-50 transition-all duration-300
+              py-4 px-6 bg-navy
+              [&.scrolled]:bg-navy/95 [&.scrolled]:backdrop-blur-md
+              [&.scrolled]:border-b [&.scrolled]:border-white/10
+              [&.scrolled]:shadow-lg">
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
+      <a href="/" class="text-xl font-bold tracking-tight text-white">
+        Safety<span class="text-teal">TAP</span>
+      </a>
+      <div class="flex items-center gap-8">
+        <a href="/blog" class:list={["text-sm text-white/80 hover:text-teal transition-colors", { 'text-teal': currentPath.startsWith('/blog') }]}>Blog</a>
+        <a href="/about" class:list={["text-sm text-white/80 hover:text-teal transition-colors", { 'text-teal': currentPath === '/about' }]}>About</a>
+        <a href="/contact"
+           class="bg-teal hover:bg-teal-light text-white font-semibold
+                  text-sm px-5 py-2.5 rounded-lg
+                  shadow-sm shadow-teal/20
+                  transition-all duration-200">
+          Talk to Us
+        </a>
+      </div>
     </div>
   </nav>
+  <!-- Spacer to account for fixed nav -->
+  <div class="h-16"></div>
 </header>
+
+<script>
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav?.classList.toggle('scrolled', window.scrollY > 40);
+  });
+</script>

@@ -17,17 +17,18 @@ const formattedDate = new Date(date).toLocaleDateString('en-US', {
 });
 ---
 
-<article class="border-b border-gray-200 pb-8">
-  <a href={`/blog/${slug}`} class="group block">
-    <h2 class="text-xl font-semibold text-navy group-hover:text-teal transition-colors">{title}</h2>
-    <p class="text-dark/70 mt-2">{description}</p>
+<article class="bg-white border border-gray-100 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group">
+  <div class="h-1 bg-gradient-to-r from-teal to-teal-light"></div>
+  <a href={`/blog/${slug}`} class="block p-6">
+    <h2 class="text-lg font-semibold text-navy group-hover:text-teal transition-colors">{title}</h2>
+    <p class="text-dark/70 mt-2 text-sm leading-relaxed">{description}</p>
     <div class="flex items-center gap-4 mt-3 text-sm text-dark/50">
       <time>{formattedDate}</time>
       <span>{readTime} read</span>
     </div>
     <div class="flex gap-2 mt-3">
       {tags.map((tag) => (
-        <span class="text-xs bg-light text-steel px-2 py-1 rounded">{tag}</span>
+        <span class="text-xs bg-teal-pale text-teal px-2 py-1 rounded">{tag}</span>
       ))}
     </div>
   </a>
