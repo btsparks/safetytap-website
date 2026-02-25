@@ -10,8 +10,8 @@ const currentPath = Astro.url.pathname;
               [&.scrolled]:border-b [&.scrolled]:border-white/10
               [&.scrolled]:shadow-lg">
     <div class="max-w-6xl mx-auto flex items-center justify-between">
-      <a href="/" class="text-xl font-bold tracking-tight text-white">
-        Safety<span class="text-teal">TAP</span>
+      <a href="/" class="block">
+        <img src="/logo.png" alt="SafetyTAP" class="h-9 w-auto rounded" />
       </a>
       <div class="flex items-center gap-8">
         <a href="/blog" class:list={["text-sm text-white/80 hover:text-teal transition-colors", { 'text-teal': currentPath.startsWith('/blog') }]}>Insights</a>
