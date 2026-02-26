@@ -58,14 +58,15 @@ jobs:
           git config user.name "SafetyTAP Content Bot"
           git config user.email "content-bot@safetytap.com"
 
-          # Get the title of the generated post from the schedule
-          TITLE=$(node -e "
-            const fs = require('fs');
+          # Get the title of the generated post from the schedule (ESM project, so use dynamic import)
+          TITLE=$(node --input-type=module -e "
+            import fs from 'fs';
             const schedule = JSON.parse(fs.readFileSync('content-engine/schedule.json', 'utf-8'));
             const posts = schedule.posts || {};
-            const latest = Object.values(posts).sort((a,b) => b.generatedAt.localeCompare(a.generatedAt))[0];
+            const entries = Object.values(posts).filter(p => p.generatedAt && p.generatedAt !== 'pre-existing');
+            const latest = entries.sort((a,b) => b.generatedAt.localeCompare(a.generatedAt))[0];
             console.log(latest ? latest.title : 'New daily insight');
-          ")
+          " || echo "New daily insight")
 
           git commit -m "content: ${TITLE}
 
