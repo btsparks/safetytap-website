@@ -461,14 +461,17 @@ const calendarJSON = JSON.stringify(calendarItems);
     const formatMap = { 'deep-dive': 'Deep Dive', 'field-tip': 'Field Tip', 'myth-buster': 'Myth Buster', 'incident-analysis': 'Incident Analysis', 'research-spotlight': 'Research Spotlight', 'leadership-brief': 'Leadership Brief' };
     document.getElementById('detail-format').textContent = formatMap[item.format] || item.format;
 
-    // Image preview
+    // Image preview — show preview and hide upload area if image exists, vice versa
     const previewDiv = document.getElementById('image-preview');
+    const uploadDiv = document.getElementById('upload-area');
     if (item.heroImage) {
       previewDiv.classList.remove('hidden');
+      uploadDiv?.classList.add('hidden');
       document.getElementById('image-preview-img').src = item.heroImage;
       document.getElementById('image-preview-info').textContent = 'Hero image uploaded';
     } else {
       previewDiv.classList.add('hidden');
+      uploadDiv?.classList.remove('hidden');
     }
 
     // Published link
@@ -611,10 +614,11 @@ const calendarJSON = JSON.stringify(calendarItems);
         item.heroImage = data.imagePath;
         item.hasImage = true;
       }
-      // Show preview
+      // Show preview, hide upload area
       document.getElementById('image-preview')?.classList.remove('hidden');
       document.getElementById('image-preview-img').src = data.imagePath + '?t=' + Date.now();
       document.getElementById('image-preview-info').textContent = `${data.dimensions} / ${data.sizeKB}KB`;
+      document.getElementById('upload-area')?.classList.add('hidden');
 
       // Update row indicator
       const row = document.querySelector(`[data-day="${day}"]`);
@@ -639,6 +643,10 @@ const calendarJSON = JSON.stringify(calendarItems);
     setTimeout(() => { progressDiv?.classList.add('hidden'); }, 3000);
     return data;
   }
+
+  // Prevent browser from navigating when files are dropped anywhere on the page
+  document.addEventListener('dragover', (e) => e.preventDefault());
+  document.addEventListener('drop', (e) => e.preventDefault());
 
   // Desktop upload
   const uploadArea = document.getElementById('upload-area');
