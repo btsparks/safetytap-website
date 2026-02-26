@@ -17,6 +17,7 @@
     "@astrojs/mdx": "^4.0.0",
     "@astrojs/node": "^9.5.4",
     "@astrojs/tailwind": "^6.0.0",
+    "@astrojs/vercel": "^9.0.4",
     "@tailwindcss/typography": "^0.5.19",
     "astro": "^5.0.0",
     "dotenv": "^16.4.7",
