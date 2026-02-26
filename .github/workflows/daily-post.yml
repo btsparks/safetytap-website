@@ -1,0 +1,74 @@
+name: Daily Blog Post
+
+# Runs every day at 6:00 AM Eastern (11:00 UTC)
+on:
+  schedule:
+    - cron: '0 11 * * *'
+  workflow_dispatch: # Allow manual trigger from GitHub UI
+
+permissions:
+  contents: write
+
+jobs:
+  generate-daily-post:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run research agent
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node content-engine/research-agent.js
+        continue-on-error: true # Post can still generate without research
+
+      - name: Generate daily post
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node content-engine/daily-generate.js
+
+      - name: Check for new content
+        id: check-changes
+        run: |
+          git add -A
+          if git diff --cached --quiet; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "No new content generated (post may already exist)"
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "New content detected"
+          fi
+
+      - name: Commit and push
+        if: steps.check-changes.outputs.has_changes == 'true'
+        run: |
+          git config user.name "SafetyTAP Content Bot"
+          git config user.email "content-bot@safetytap.com"
+
+          # Get the title of the generated post from the schedule
+          TITLE=$(node -e "
+            const fs = require('fs');
+            const schedule = JSON.parse(fs.readFileSync('content-engine/schedule.json', 'utf-8'));
+            const posts = schedule.posts || {};
+            const latest = Object.values(posts).sort((a,b) => b.generatedAt.localeCompare(a.generatedAt))[0];
+            console.log(latest ? latest.title : 'New daily insight');
+          ")
+
+          git commit -m "content: ${TITLE}
+
+          Automated daily insight published by SafetyTAP Content Engine"
+
+          git push

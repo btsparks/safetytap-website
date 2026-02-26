@@ -2,3 +2,7 @@ node_modules/
 dist/
 .env
 .astro/
+
+# Content engine working files (regenerated daily)
+content-engine/research-feed.json
+content-engine/topics-batch-*.json

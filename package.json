@@ -6,15 +6,22 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "generate": "node content-engine/generate.js"
+    "generate": "node content-engine/generate.js",
+    "daily": "node content-engine/daily-generate.js",
+    "research": "node content-engine/research-agent.js",
+    "schedule": "node content-engine/init-schedule.js --status",
+    "schedule:init": "node content-engine/init-schedule.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.39.0",
     "@astrojs/mdx": "^4.0.0",
+    "@astrojs/node": "^9.5.4",
     "@astrojs/tailwind": "^6.0.0",
     "@tailwindcss/typography": "^0.5.19",
     "astro": "^5.0.0",
     "dotenv": "^16.4.7",
+    "rss-parser": "^3.13.0",
+    "sharp": "^0.34.5",
     "tailwindcss": "^3.4.0"
   }
 }

@@ -1,0 +1,709 @@
+---
+export const prerender = false;
+
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import fs from 'fs';
+import path from 'path';
+
+// Load topic bank
+let topics: any[] = [];
+const topicBankPath = path.resolve('content-engine/topic-bank.json');
+if (fs.existsSync(topicBankPath)) {
+  topics = JSON.parse(fs.readFileSync(topicBankPath, 'utf-8'));
+}
+
+// Load schedule
+let schedule: any = { startDate: new Date().toISOString().split('T')[0], posts: {} };
+const schedulePath = path.resolve('content-engine/schedule.json');
+if (fs.existsSync(schedulePath)) {
+  schedule = JSON.parse(fs.readFileSync(schedulePath, 'utf-8'));
+}
+
+// Get published blog posts
+const publishedPosts = await getCollection('blog');
+const publishedSlugs = new Set(publishedPosts.map(p => p.slug));
+
+// Build calendar data — timezone-safe date math using UTC throughout
+function getDateForDay(startDate: string, day: number) {
+  const [y, m, d] = startDate.split('-').map(Number);
+  const utc = new Date(Date.UTC(y, m - 1, d + (day - 1)));
+  return utc.toISOString().split('T')[0];
+}
+
+// Timezone-safe month label from "YYYY-MM" key
+function monthLabel(monthKey: string) {
+  const [y, m] = monthKey.split('-').map(Number);
+  const d = new Date(Date.UTC(y, m - 1, 15)); // mid-month avoids any edge issues
+  return d.toLocaleString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' });
+}
+
+const today = new Date().toISOString().split('T')[0];
+
+const calendarItems = topics.map((topic: any) => {
+  const date = getDateForDay(schedule.startDate, topic.day);
+  const scheduleEntry = schedule.posts?.[topic.day] || {};
+  const isPublished = publishedSlugs.has(topic.slug) || scheduleEntry.status === 'published';
+  const isPast = date < today;
+  const isToday = date === today;
+
+  let status = 'scheduled';
+  if (isPublished) status = 'published';
+  else if (isToday) status = 'today';
+  else if (isPast) status = 'missed';
+
+  return {
+    day: topic.day,
+    date,
+    slug: topic.slug,
+    title: topic.title,
+    pillar: topic.pillar,
+    format: topic.format,
+    status,
+    psychologicalConcept: topic.psychologicalConcept,
+    constructionFraming: topic.constructionFraming,
+    targetKeyword: topic.targetKeyword,
+    researchReferences: topic.researchReferences,
+    safetyTapConnection: topic.safetyTapConnection,
+    targetLength: topic.targetLength,
+    editorialNote: scheduleEntry.editorialNote || '',
+    heroImage: scheduleEntry.heroImage || '',
+    hasNote: !!scheduleEntry.editorialNote,
+    hasImage: !!scheduleEntry.heroImage,
+  };
+});
+
+const publishedCount = calendarItems.filter((i: any) => i.status === 'published').length;
+const scheduledCount = calendarItems.filter((i: any) => i.status === 'scheduled').length;
+const todayItem = calendarItems.find((i: any) => i.status === 'today');
+const notesCount = calendarItems.filter((i: any) => i.hasNote).length;
+const imagesCount = calendarItems.filter((i: any) => i.hasImage).length;
+
+const pillarColors: Record<string, string> = {
+  'hazard-recognition': 'bg-teal/20 text-teal',
+  'cognitive-bias': 'bg-amber-100 text-amber-700',
+  'crew-dynamics': 'bg-blue-100 text-blue-700',
+  'learning-development': 'bg-green-100 text-green-700',
+  'safety-culture': 'bg-purple-100 text-purple-700',
+  'human-factors': 'bg-red-100 text-red-700',
+  'risk-perception': 'bg-orange-100 text-orange-700',
+  'incident-prevention': 'bg-cyan-100 text-cyan-700',
+};
+
+const formatLabels: Record<string, string> = {
+  'deep-dive': 'Deep Dive',
+  'field-tip': 'Field Tip',
+  'myth-buster': 'Myth Buster',
+  'incident-analysis': 'Incident Analysis',
+  'research-spotlight': 'Research Spotlight',
+  'leadership-brief': 'Leadership Brief',
+};
+
+// Group by month
+const months: Record<string, any[]> = {};
+calendarItems.forEach((item: any) => {
+  const monthKey = item.date.slice(0, 7);
+  if (!months[monthKey]) months[monthKey] = [];
+  months[monthKey].push(item);
+});
+
+// Pass full data to client-side JS
+const calendarJSON = JSON.stringify(calendarItems);
+---
+
+<Base title="Content Schedule" description="SafetyTAP automated content calendar">
+
+  <section class="bg-navy-deep py-12 text-white">
+    <div class="max-w-6xl mx-auto px-6">
+      <p class="text-sm font-semibold tracking-widest uppercase text-teal mb-2">Admin</p>
+      <h1 class="font-display text-3xl md:text-4xl font-bold">Content Calendar</h1>
+      <p class="text-white/60 mt-2">Click any post to add notes or upload a hero image</p>
+
+      <div class="mt-8 grid grid-cols-2 md:grid-cols-5 gap-4">
+        <div class="bg-white/5 border border-white/10 rounded-lg p-4">
+          <p class="text-2xl font-bold text-teal">{publishedCount}</p>
+          <p class="text-sm text-white/50">Published</p>
+        </div>
+        <div class="bg-white/5 border border-white/10 rounded-lg p-4">
+          <p class="text-2xl font-bold text-white">{scheduledCount}</p>
+          <p class="text-sm text-white/50">Scheduled</p>
+        </div>
+        <div class="bg-white/5 border border-white/10 rounded-lg p-4">
+          <p class="text-2xl font-bold text-white">{topics.length}</p>
+          <p class="text-sm text-white/50">Total</p>
+        </div>
+        <div class="bg-white/5 border border-white/10 rounded-lg p-4">
+          <p class="text-2xl font-bold text-white" data-stat="notes-count">{notesCount}</p>
+          <p class="text-sm text-white/50">With Notes</p>
+        </div>
+        <div class="bg-white/5 border border-white/10 rounded-lg p-4">
+          <p class="text-2xl font-bold text-white">{imagesCount}</p>
+          <p class="text-sm text-white/50">With Images</p>
+        </div>
+      </div>
+
+      {todayItem && (
+        <div class="mt-6 bg-teal/10 border border-teal/30 rounded-lg p-4">
+          <p class="text-sm text-teal font-semibold mb-1">Today's Post</p>
+          <p class="text-lg font-semibold">{todayItem.title}</p>
+          <p class="text-sm text-white/50 mt-1">
+            Day {todayItem.day} — {formatLabels[todayItem.format] || todayItem.format} — {todayItem.pillar}
+          </p>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- Filter bar -->
+  <section class="bg-light border-b border-gray-200 sticky top-16 z-30">
+    <div class="max-w-6xl mx-auto px-6 py-3 flex flex-wrap gap-2 items-center">
+      <span class="text-sm text-dark/50 mr-2">Filter:</span>
+      <button data-filter="all" class="filter-btn active text-xs px-3 py-1 rounded-full bg-navy text-white font-medium transition-colors">All</button>
+      <button data-filter="published" class="filter-btn text-xs px-3 py-1 rounded-full bg-gray-200 text-dark/70 font-medium transition-colors hover:bg-gray-300">Published</button>
+      <button data-filter="scheduled" class="filter-btn text-xs px-3 py-1 rounded-full bg-gray-200 text-dark/70 font-medium transition-colors hover:bg-gray-300">Scheduled</button>
+      <span class="mx-2 text-gray-300">|</span>
+      <button data-pillar="hazard-recognition" class="pillar-btn text-xs px-3 py-1 rounded-full bg-teal/10 text-teal font-medium transition-colors hover:bg-teal/20">Hazard Recognition</button>
+      <button data-pillar="cognitive-bias" class="pillar-btn text-xs px-3 py-1 rounded-full bg-amber-50 text-amber-600 font-medium transition-colors hover:bg-amber-100">Cognitive Bias</button>
+      <button data-pillar="crew-dynamics" class="pillar-btn text-xs px-3 py-1 rounded-full bg-blue-50 text-blue-600 font-medium transition-colors hover:bg-blue-100">Crew Dynamics</button>
+      <button data-pillar="learning-development" class="pillar-btn text-xs px-3 py-1 rounded-full bg-green-50 text-green-600 font-medium transition-colors hover:bg-green-100">Learning Development</button>
+      <button data-pillar="safety-culture" class="pillar-btn text-xs px-3 py-1 rounded-full bg-purple-50 text-purple-600 font-medium transition-colors hover:bg-purple-100">Safety Culture</button>
+      <button data-pillar="human-factors" class="pillar-btn text-xs px-3 py-1 rounded-full bg-red-50 text-red-600 font-medium transition-colors hover:bg-red-100">Human Factors</button>
+      <button data-pillar="risk-perception" class="pillar-btn text-xs px-3 py-1 rounded-full bg-orange-50 text-orange-600 font-medium transition-colors hover:bg-orange-100">Risk Perception</button>
+      <button data-pillar="incident-prevention" class="pillar-btn text-xs px-3 py-1 rounded-full bg-cyan-50 text-cyan-600 font-medium transition-colors hover:bg-cyan-100">Incident Prevention</button>
+    </div>
+  </section>
+
+  <!-- Calendar grid + Detail panel -->
+  <section class="py-8 bg-white">
+    <div class="max-w-6xl mx-auto px-6 flex gap-6">
+
+      <!-- Calendar list (left side) -->
+      <div class="flex-1 min-w-0" id="calendar-list">
+        {Object.entries(months).map(([monthKey, items]) => {
+          return (
+            <div class="mb-10" data-month={monthKey}>
+              <h2 class="font-display text-xl font-bold text-navy mb-4 sticky top-[7.5rem] bg-white py-2 z-20 border-b border-gray-100">
+                {monthLabel(monthKey)}
+                <span class="text-sm font-normal text-dark/40 ml-3 month-count" data-total={`${(items as any[]).filter((i: any) => i.status === 'published').length}/${(items as any[]).length}`}>
+                  {(items as any[]).filter((i: any) => i.status === 'published').length}/{(items as any[]).length} published
+                </span>
+              </h2>
+              <div class="space-y-2">
+                {(items as any[]).map((item: any) => (
+                  <div
+                    class:list={[
+                      'calendar-row flex items-center gap-3 p-3 rounded-lg border transition-all cursor-pointer hover:shadow-md',
+                      {
+                        'bg-teal/5 border-teal/20': item.status === 'published',
+                        'bg-white border-gray-100 hover:border-teal/40': item.status === 'scheduled',
+                        'bg-amber-50 border-amber-200': item.status === 'today',
+                        'bg-red-50/50 border-red-100': item.status === 'missed',
+                      }
+                    ]}
+                    data-status={item.status}
+                    data-pillar={item.pillar}
+                    data-day={item.day}
+                  >
+                    <div class="w-16 flex-shrink-0 text-center">
+                      <p class="text-xs text-dark/40">{new Date(item.date + 'T12:00:00Z').toLocaleDateString('en-US', { weekday: 'short', timeZone: 'UTC' })}</p>
+                      <p class="text-sm font-semibold text-dark">{item.date.slice(5)}</p>
+                    </div>
+
+                    <div class="w-5 flex-shrink-0">
+                      {item.status === 'published' && <span class="inline-block w-2.5 h-2.5 rounded-full bg-teal"></span>}
+                      {item.status === 'scheduled' && <span class="inline-block w-2.5 h-2.5 rounded-full bg-gray-300"></span>}
+                      {item.status === 'today' && <span class="inline-block w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse"></span>}
+                      {item.status === 'missed' && <span class="inline-block w-2.5 h-2.5 rounded-full bg-red-300"></span>}
+                    </div>
+
+                    <div class="flex-1 min-w-0">
+                      <p class="text-sm font-medium text-dark/80 truncate">{item.title}</p>
+                    </div>
+
+                    {/* Indicators for notes/images */}
+                    <div class="flex gap-1.5 flex-shrink-0">
+                      {item.hasNote && (
+                        <span class="w-5 h-5 rounded bg-blue-100 text-blue-500 flex items-center justify-center text-xs" title="Has editorial note">N</span>
+                      )}
+                      {item.hasImage && (
+                        <span class="w-5 h-5 rounded bg-green-100 text-green-500 flex items-center justify-center text-xs" title="Has hero image">I</span>
+                      )}
+                    </div>
+
+                  </div>
+                ))}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <!-- Detail panel (right side, sticky) -->
+      <div class="w-96 flex-shrink-0 hidden lg:block">
+        <div class="sticky top-[7.5rem] max-h-[calc(100vh-8rem)] overflow-y-auto" id="detail-panel">
+          <!-- Empty state -->
+          <div id="detail-empty" class="bg-light rounded-xl border border-gray-200 p-8 text-center">
+            <p class="text-dark/40 text-sm">Click a post to view details, add notes, or upload an image</p>
+          </div>
+
+          <!-- Active state -->
+          <div id="detail-active" class="bg-white rounded-xl border border-gray-200 shadow-lg overflow-hidden" style="display:none;">
+            <!-- Header -->
+            <div class="bg-navy-deep p-4">
+              <div class="flex items-center gap-2 mb-2">
+                <span id="detail-day" class="text-xs text-white/40 font-mono"></span>
+                <span id="detail-date" class="text-xs text-white/40"></span>
+                <span id="detail-status" class="text-xs px-2 py-0.5 rounded-full font-medium ml-auto"></span>
+              </div>
+              <h3 id="detail-title" class="text-white font-semibold text-base leading-snug"></h3>
+              <div class="flex gap-2 mt-2">
+                <span id="detail-pillar" class="text-xs px-2 py-0.5 rounded-full font-medium"></span>
+                <span id="detail-format" class="text-xs px-2 py-0.5 rounded-full bg-white/10 text-white/60 font-medium"></span>
+              </div>
+            </div>
+
+            <!-- Topic details -->
+            <div class="p-4 border-b border-gray-100 space-y-3">
+              <div>
+                <p class="text-xs text-dark/40 font-semibold uppercase tracking-wide mb-1">Psychological Concept</p>
+                <p id="detail-concept" class="text-sm text-dark/70 leading-relaxed"></p>
+              </div>
+              <div>
+                <p class="text-xs text-dark/40 font-semibold uppercase tracking-wide mb-1">Construction Framing</p>
+                <p id="detail-framing" class="text-sm text-dark/70 leading-relaxed"></p>
+              </div>
+              <div>
+                <p class="text-xs text-dark/40 font-semibold uppercase tracking-wide mb-1">SEO Keyword</p>
+                <p id="detail-keyword" class="text-sm text-teal font-medium"></p>
+              </div>
+            </div>
+
+            <!-- Editorial Notes -->
+            <div class="p-4 border-b border-gray-100">
+              <label class="text-xs text-dark/40 font-semibold uppercase tracking-wide block mb-2">Editorial Notes</label>
+              <textarea
+                id="detail-note"
+                class="w-full border border-gray-200 rounded-lg p-3 text-sm text-dark/80 leading-relaxed resize-none focus:outline-none focus:border-teal focus:ring-1 focus:ring-teal/30 transition-colors"
+                rows="3"
+                placeholder="Add guidance for AI generation — e.g., 'Reference the recent OSHA ruling on fall protection' or 'Keep this one short and practical'"></textarea>
+              <div class="flex items-center justify-between mt-2">
+                <span id="note-status" class="text-xs text-dark/30 transition-all"></span>
+                <button
+                  id="save-note-btn"
+                  class="text-xs bg-teal text-white px-4 py-1.5 rounded-lg font-medium hover:bg-teal-light transition-all disabled:opacity-50"
+                >Save Note</button>
+              </div>
+              <!-- Save confirmation toast -->
+              <div id="note-toast" class="hidden mt-2 bg-green-50 border border-green-200 text-green-700 text-xs font-medium px-3 py-2 rounded-lg text-center transition-all">
+                Note saved successfully
+              </div>
+            </div>
+
+            <!-- Image Upload -->
+            <div class="p-4">
+              <label class="text-xs text-dark/40 font-semibold uppercase tracking-wide block mb-2">Hero Image</label>
+
+              <!-- Image preview -->
+              <div id="image-preview" class="hidden mb-3">
+                <img id="image-preview-img" src="" alt="" class="w-full h-40 object-cover rounded-lg" />
+                <p id="image-preview-info" class="text-xs text-dark/30 mt-1"></p>
+              </div>
+
+              <!-- Upload area -->
+              <div
+                id="upload-area"
+                class="border-2 border-dashed border-gray-200 rounded-lg p-6 text-center cursor-pointer hover:border-teal/40 hover:bg-teal/[0.02] transition-colors"
+              >
+                <input type="file" id="image-input" accept="image/*" class="hidden" />
+                <p class="text-sm text-dark/40">Drop an image here or click to upload</p>
+                <p class="text-xs text-dark/30 mt-1">Auto-resized to 1200x630 for optimal display</p>
+              </div>
+
+              <!-- Upload progress -->
+              <div id="upload-progress" class="hidden mt-2">
+                <div class="h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                  <div id="upload-bar" class="h-full bg-teal rounded-full transition-all duration-300" style="width: 0%"></div>
+                </div>
+                <p id="upload-status" class="text-xs text-dark/30 mt-1"></p>
+              </div>
+            </div>
+
+            <!-- Published link -->
+            <div id="detail-published-link" class="p-4 border-t border-gray-100" style="display:none;">
+              <a id="detail-blog-link" href="" class="text-sm text-teal hover:text-teal-light font-medium underline-offset-2 hover:underline transition-colors">View published post</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mobile detail panel (slides up from bottom) -->
+  <div id="mobile-overlay" class="fixed inset-0 bg-black/50 z-50 lg:hidden" style="display:none;" >
+    <div id="mobile-panel" class="absolute bottom-0 left-0 right-0 bg-white rounded-t-2xl max-h-[85vh] overflow-y-auto">
+      <div class="sticky top-0 bg-white border-b border-gray-100 p-4 flex items-center justify-between">
+        <h3 id="mobile-title" class="font-semibold text-navy text-base truncate pr-4"></h3>
+        <button id="mobile-close" class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 text-dark/50 hover:bg-gray-200">X</button>
+      </div>
+      <div class="p-4 space-y-4">
+        <div>
+          <p class="text-xs text-dark/40 font-semibold uppercase tracking-wide mb-1">Concept</p>
+          <p id="mobile-concept" class="text-sm text-dark/70"></p>
+        </div>
+        <div>
+          <label class="text-xs text-dark/40 font-semibold uppercase tracking-wide block mb-2">Editorial Notes</label>
+          <textarea
+            id="mobile-note"
+            class="w-full border border-gray-200 rounded-lg p-3 text-sm resize-none focus:outline-none focus:border-teal"
+            rows="3"
+            placeholder="Add guidance for AI generation..."></textarea>
+          <button
+            id="mobile-save-note"
+            class="mt-2 text-xs bg-teal text-white px-4 py-1.5 rounded-lg font-medium"
+          >Save Note</button>
+        </div>
+        <div>
+          <label class="text-xs text-dark/40 font-semibold uppercase tracking-wide block mb-2">Hero Image</label>
+          <div id="mobile-upload-area" class="border-2 border-dashed border-gray-200 rounded-lg p-4 text-center cursor-pointer">
+            <input type="file" id="mobile-image-input" accept="image/*" class="hidden" />
+            <p class="text-sm text-dark/40">Tap to upload image</p>
+          </div>
+          <div id="mobile-image-preview" class="hidden mt-2">
+            <img id="mobile-preview-img" src="" alt="" class="w-full h-32 object-cover rounded-lg" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</Base>
+
+<script define:vars={{ calendarJSON }}>
+  const items = JSON.parse(calendarJSON);
+  let activeDay = null;
+
+  const pillarColorMap = {
+    'hazard-recognition': 'bg-teal/20 text-teal',
+    'cognitive-bias': 'bg-amber-100 text-amber-700',
+    'crew-dynamics': 'bg-blue-100 text-blue-700',
+    'learning-development': 'bg-green-100 text-green-700',
+    'safety-culture': 'bg-purple-100 text-purple-700',
+    'human-factors': 'bg-red-100 text-red-700',
+    'risk-perception': 'bg-orange-100 text-orange-700',
+    'incident-prevention': 'bg-cyan-100 text-cyan-700',
+  };
+
+  const statusColors = {
+    'published': 'bg-teal/20 text-teal',
+    'scheduled': 'bg-gray-200 text-dark/60',
+    'today': 'bg-amber-100 text-amber-700',
+    'missed': 'bg-red-100 text-red-600',
+  };
+
+  // ---- Detail panel logic ----
+  function showDetail(day) {
+    const item = items.find(i => i.day === day);
+    if (!item) return;
+    activeDay = day;
+
+    // Highlight active row
+    document.querySelectorAll('.calendar-row').forEach(r => r.classList.remove('ring-2', 'ring-teal/40'));
+    document.querySelector(`[data-day="${day}"]`)?.classList.add('ring-2', 'ring-teal/40');
+
+    // Desktop panel
+    document.getElementById('detail-empty').style.display = 'none';
+    document.getElementById('detail-active').style.display = '';
+
+    document.getElementById('detail-day').textContent = `#${item.day}`;
+    document.getElementById('detail-date').textContent = item.date;
+    document.getElementById('detail-title').textContent = item.title;
+    document.getElementById('detail-concept').textContent = item.psychologicalConcept;
+    document.getElementById('detail-framing').textContent = item.constructionFraming;
+    document.getElementById('detail-keyword').textContent = item.targetKeyword;
+    document.getElementById('detail-note').value = item.editorialNote || '';
+    document.getElementById('note-status').textContent = item.editorialNote ? 'Note saved' : '';
+
+    // Status badge
+    const statusEl = document.getElementById('detail-status');
+    statusEl.textContent = item.status.charAt(0).toUpperCase() + item.status.slice(1);
+    statusEl.className = `text-xs px-2 py-0.5 rounded-full font-medium ml-auto ${statusColors[item.status] || ''}`;
+
+    // Pillar badge
+    const pillarEl = document.getElementById('detail-pillar');
+    const pillarLabel = item.pillar.split('-').map(w => w[0].toUpperCase() + w.slice(1)).join(' ');
+    pillarEl.textContent = pillarLabel;
+    pillarEl.className = `text-xs px-2 py-0.5 rounded-full font-medium ${pillarColorMap[item.pillar] || 'bg-gray-100'}`;
+
+    // Format
+    const formatMap = { 'deep-dive': 'Deep Dive', 'field-tip': 'Field Tip', 'myth-buster': 'Myth Buster', 'incident-analysis': 'Incident Analysis', 'research-spotlight': 'Research Spotlight', 'leadership-brief': 'Leadership Brief' };
+    document.getElementById('detail-format').textContent = formatMap[item.format] || item.format;
+
+    // Image preview
+    const previewDiv = document.getElementById('image-preview');
+    if (item.heroImage) {
+      previewDiv.classList.remove('hidden');
+      document.getElementById('image-preview-img').src = item.heroImage;
+      document.getElementById('image-preview-info').textContent = 'Hero image uploaded';
+    } else {
+      previewDiv.classList.add('hidden');
+    }
+
+    // Published link
+    const linkDiv = document.getElementById('detail-published-link');
+    if (item.status === 'published') {
+      linkDiv.style.display = '';
+      document.getElementById('detail-blog-link').href = `/blog/${item.slug}`;
+    } else {
+      linkDiv.style.display = 'none';
+    }
+  }
+
+  // Click handlers on calendar rows
+  document.querySelectorAll('.calendar-row').forEach(row => {
+    row.addEventListener('click', () => {
+      const day = parseInt(row.getAttribute('data-day'));
+      showDetail(day);
+
+      // Mobile: show overlay
+      if (window.innerWidth < 1024) {
+        const item = items.find(i => i.day === day);
+        document.getElementById('mobile-overlay').style.display = '';
+        document.getElementById('mobile-title').textContent = item.title;
+        document.getElementById('mobile-concept').textContent = item.psychologicalConcept;
+        document.getElementById('mobile-note').value = item.editorialNote || '';
+        if (item.heroImage) {
+          document.getElementById('mobile-image-preview').classList.remove('hidden');
+          document.getElementById('mobile-preview-img').src = item.heroImage;
+        } else {
+          document.getElementById('mobile-image-preview').classList.add('hidden');
+        }
+      }
+    });
+  });
+
+  // Close mobile panel
+  document.getElementById('mobile-close')?.addEventListener('click', () => {
+    document.getElementById('mobile-overlay').style.display = 'none';
+  });
+  document.getElementById('mobile-overlay')?.addEventListener('click', (e) => {
+    if (e.target === e.currentTarget) {
+      document.getElementById('mobile-overlay').style.display = 'none';
+    }
+  });
+
+  // ---- Save note ----
+  async function saveNote(day, note) {
+    const res = await fetch('/api/save-note', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ day, note }),
+    });
+    const data = await res.json();
+    if (data.success) {
+      const item = items.find(i => i.day === day);
+      if (item) {
+        item.editorialNote = note;
+        item.hasNote = !!note;
+      }
+      // Update the indicator on the row
+      const row = document.querySelector(`[data-day="${day}"]`);
+      if (row) {
+        const indicators = row.querySelector('.flex.gap-1\\.5');
+        if (indicators && note && !row.querySelector('[title="Has editorial note"]')) {
+          const badge = document.createElement('span');
+          badge.className = 'w-5 h-5 rounded bg-blue-100 text-blue-500 flex items-center justify-center text-xs';
+          badge.title = 'Has editorial note';
+          badge.textContent = 'N';
+          indicators.prepend(badge);
+        }
+      }
+    }
+    return data;
+  }
+
+  document.getElementById('save-note-btn')?.addEventListener('click', async () => {
+    if (!activeDay) return;
+    const note = document.getElementById('detail-note').value;
+    const btn = document.getElementById('save-note-btn');
+    const status = document.getElementById('note-status');
+    const toast = document.getElementById('note-toast');
+    btn.disabled = true;
+    btn.textContent = 'Saving...';
+    const result = await saveNote(activeDay, note);
+    btn.disabled = false;
+    btn.textContent = 'Save Note';
+    if (result.success) {
+      status.textContent = note ? 'Note saved' : '';
+      status.classList.add('text-green-600');
+      // Show toast
+      toast?.classList.remove('hidden');
+      setTimeout(() => { toast?.classList.add('hidden'); status.classList.remove('text-green-600'); }, 2500);
+      // Update "With Notes" counter in header
+      const notesTotal = items.filter(i => i.hasNote).length;
+      const notesCountEl = document.querySelector('[data-stat="notes-count"]');
+      if (notesCountEl) notesCountEl.textContent = String(notesTotal);
+    } else {
+      status.textContent = 'Error saving';
+      status.classList.add('text-red-500');
+      setTimeout(() => { status.classList.remove('text-red-500'); }, 2500);
+    }
+  });
+
+  document.getElementById('mobile-save-note')?.addEventListener('click', async () => {
+    if (!activeDay) return;
+    const note = document.getElementById('mobile-note').value;
+    const btn = document.getElementById('mobile-save-note');
+    btn.textContent = 'Saving...';
+    await saveNote(activeDay, note);
+    btn.textContent = 'Saved';
+    setTimeout(() => { btn.textContent = 'Save Note'; }, 2000);
+  });
+
+  // ---- Image upload ----
+  async function uploadImage(day, file) {
+    const formData = new FormData();
+    formData.append('image', file);
+    formData.append('day', String(day));
+
+    const progressDiv = document.getElementById('upload-progress');
+    const bar = document.getElementById('upload-bar');
+    const statusText = document.getElementById('upload-status');
+
+    progressDiv?.classList.remove('hidden');
+    bar.style.width = '30%';
+    statusText.textContent = 'Uploading and processing...';
+
+    const res = await fetch('/api/upload-image', {
+      method: 'POST',
+      body: formData,
+    });
+
+    bar.style.width = '100%';
+    const data = await res.json();
+
+    if (data.success) {
+      statusText.textContent = `Saved: ${data.dimensions}, ${data.sizeKB}KB`;
+      const item = items.find(i => i.day === day);
+      if (item) {
+        item.heroImage = data.imagePath;
+        item.hasImage = true;
+      }
+      // Show preview
+      document.getElementById('image-preview')?.classList.remove('hidden');
+      document.getElementById('image-preview-img').src = data.imagePath + '?t=' + Date.now();
+      document.getElementById('image-preview-info').textContent = `${data.dimensions} / ${data.sizeKB}KB`;
+
+      // Update row indicator
+      const row = document.querySelector(`[data-day="${day}"]`);
+      if (row) {
+        const indicators = row.querySelector('.flex.gap-1\\.5');
+        if (indicators && !row.querySelector('[title="Has hero image"]')) {
+          const badge = document.createElement('span');
+          badge.className = 'w-5 h-5 rounded bg-green-100 text-green-500 flex items-center justify-center text-xs';
+          badge.title = 'Has hero image';
+          badge.textContent = 'I';
+          indicators.append(badge);
+        }
+      }
+
+      // Mobile preview
+      document.getElementById('mobile-image-preview')?.classList.remove('hidden');
+      document.getElementById('mobile-preview-img').src = data.imagePath + '?t=' + Date.now();
+    } else {
+      statusText.textContent = `Error: ${data.error}`;
+    }
+
+    setTimeout(() => { progressDiv?.classList.add('hidden'); }, 3000);
+    return data;
+  }
+
+  // Desktop upload
+  const uploadArea = document.getElementById('upload-area');
+  const imageInput = document.getElementById('image-input');
+
+  uploadArea?.addEventListener('click', () => imageInput?.click());
+  uploadArea?.addEventListener('dragover', (e) => { e.preventDefault(); uploadArea.classList.add('border-teal'); });
+  uploadArea?.addEventListener('dragleave', () => uploadArea.classList.remove('border-teal'));
+  uploadArea?.addEventListener('drop', (e) => {
+    e.preventDefault();
+    uploadArea.classList.remove('border-teal');
+    if (activeDay && e.dataTransfer?.files[0]) uploadImage(activeDay, e.dataTransfer.files[0]);
+  });
+  imageInput?.addEventListener('change', () => {
+    if (activeDay && imageInput.files[0]) uploadImage(activeDay, imageInput.files[0]);
+  });
+
+  // Mobile upload
+  const mobileUpload = document.getElementById('mobile-upload-area');
+  const mobileInput = document.getElementById('mobile-image-input');
+  mobileUpload?.addEventListener('click', () => mobileInput?.click());
+  mobileInput?.addEventListener('change', () => {
+    if (activeDay && mobileInput.files[0]) uploadImage(activeDay, mobileInput.files[0]);
+  });
+
+  // ---- Month count updater ----
+  function updateMonthCounts() {
+    document.querySelectorAll('[data-month]').forEach(monthDiv => {
+      const rows = monthDiv.querySelectorAll('.calendar-row');
+      let visible = 0;
+      let total = rows.length;
+      rows.forEach(row => {
+        if (row.style.display !== 'none') visible++;
+      });
+      const countSpan = monthDiv.querySelector('.month-count');
+      if (countSpan) {
+        const defaultText = countSpan.getAttribute('data-total');
+        // If all rows visible, show default server-rendered count
+        if (visible === total) {
+          countSpan.textContent = defaultText + ' published';
+        } else {
+          countSpan.textContent = `${visible}/${total} shown`;
+        }
+      }
+      // Hide entire month section if no rows visible
+      monthDiv.style.display = visible === 0 ? 'none' : '';
+    });
+  }
+
+  // ---- Filter logic ----
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.getAttribute('data-filter');
+      document.querySelectorAll('.filter-btn').forEach(b => {
+        b.classList.remove('active', 'bg-navy', 'text-white');
+        b.classList.add('bg-gray-200', 'text-dark/70');
+      });
+      btn.classList.add('active', 'bg-navy', 'text-white');
+      btn.classList.remove('bg-gray-200', 'text-dark/70');
+      document.querySelectorAll('.pillar-btn').forEach(b => b.classList.remove('ring-2'));
+      document.querySelectorAll('.calendar-row').forEach(row => {
+        (row).style.display = filter === 'all' ? '' : (row.getAttribute('data-status') === filter ? '' : 'none');
+      });
+      updateMonthCounts();
+    });
+  });
+
+  document.querySelectorAll('.pillar-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const pillar = btn.getAttribute('data-pillar');
+      const isActive = btn.classList.contains('ring-2');
+      document.querySelectorAll('.pillar-btn').forEach(b => b.classList.remove('ring-2'));
+      document.querySelectorAll('.filter-btn').forEach(b => {
+        b.classList.remove('active', 'bg-navy', 'text-white');
+        b.classList.add('bg-gray-200', 'text-dark/70');
+      });
+      if (isActive) {
+        document.querySelectorAll('.calendar-row').forEach(row => { (row).style.display = ''; });
+        const allBtn = document.querySelector('[data-filter="all"]');
+        allBtn?.classList.add('active', 'bg-navy', 'text-white');
+        allBtn?.classList.remove('bg-gray-200', 'text-dark/70');
+      } else {
+        btn.classList.add('ring-2');
+        document.querySelectorAll('.calendar-row').forEach(row => {
+          (row).style.display = row.getAttribute('data-pillar') === pillar ? '' : 'none';
+        });
+      }
+      updateMonthCounts();
+    });
+  });
+</script>
