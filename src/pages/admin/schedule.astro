@@ -107,11 +107,20 @@ calendarItems.forEach((item: any) => {
   months[monthKey].push(item);
 });
 
+// Detect Vercel (read-only filesystem — notes/images won't persist)
+const isVercel = !!import.meta.env.VERCEL;
+
 // Pass full data to client-side JS
 const calendarJSON = JSON.stringify(calendarItems);
 ---
 
 <Base title="Content Schedule" description="SafetyTAP automated content calendar">
+
+  {isVercel && (
+    <div class="bg-amber-500 text-black text-sm font-medium text-center py-2 px-4">
+      Read-only mode — uploading images and saving notes requires localhost. Run <code class="bg-amber-600/30 px-1.5 py-0.5 rounded font-mono text-xs">npm run dev</code> locally.
+    </div>
+  )}
 
   <section class="bg-navy-deep py-12 text-white">
     <div class="max-w-6xl mx-auto px-6">
@@ -378,9 +387,23 @@ const calendarJSON = JSON.stringify(calendarItems);
 
 </Base>
 
-<script define:vars={{ calendarJSON }}>
+<script define:vars={{ calendarJSON, isVercel }}>
   const items = JSON.parse(calendarJSON);
   let activeDay = null;
+
+  // Disable editing controls on Vercel (read-only filesystem)
+  if (isVercel) {
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('#save-note-btn, #mobile-save-note').forEach(btn => {
+        btn.disabled = true;
+        btn.title = 'Run locally to save notes';
+      });
+      document.querySelectorAll('#upload-area, #mobile-upload-area').forEach(el => {
+        el.style.pointerEvents = 'none';
+        el.style.opacity = '0.4';
+      });
+    });
+  }
 
   const pillarColorMap = {
     'hazard-recognition': 'bg-teal/20 text-teal',
