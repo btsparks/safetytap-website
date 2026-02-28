@@ -24,6 +24,17 @@
       "generatedAt": "2026-02-26T22:37:21.729Z",
       "hadResearchIntegration": false,
       "hadEditorialNote": false
+    },
+    "3": {
+      "slug": "bystander-effect-on-jobsites",
+      "title": "Why Nobody Stopped the Lift: The Bystander Effect on Construction Sites",
+      "date": "2026-02-28",
+      "pillar": "crew-dynamics",
+      "format": "myth-buster",
+      "status": "published",
+      "generatedAt": "2026-02-28T11:31:43.078Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
