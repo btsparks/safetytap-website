@@ -72,25 +72,87 @@ const RSS_SOURCES = [
     url: 'https://www.ishn.com/rss/topic/2193-construction-industry-safety-and-health',
   },
   {
-    id: 'ehs-leaders',
-    name: 'EHS Leaders',
-    url: 'https://ehsleaders.org/feed/',
+    id: 'enr-safety',
+    name: 'ENR Safety',
+    url: 'https://www.enr.com/rss/topic/172-safety',
   },
 ];
 
 // ---------------------------------------------------------------------------
-// Web Search Queries
+// Web Search Queries — tailored to the next scheduled topic
 // ---------------------------------------------------------------------------
 
-function getSearchQueries() {
+function getSearchQueries(nextTopic) {
   const now = new Date();
   const monthYear = now.toLocaleString('en-US', { month: 'long', year: 'numeric' });
-  return [
+
+  // Always include one broad construction safety query
+  const queries = [
     `construction safety incident ${monthYear}`,
-    `OSHA citation construction ${monthYear}`,
-    `workplace safety psychology research`,
-    `hazard recognition study`,
   ];
+
+  if (nextTopic) {
+    // Add topic-specific searches based on pillar, keyword, and concept
+    queries.push(`${nextTopic.targetKeyword} ${monthYear}`);
+
+    const pillarSearches = {
+      'hazard-recognition': 'hazard recognition construction site',
+      'cognitive-bias': 'cognitive bias workplace safety decisions',
+      'crew-dynamics': 'crew team dynamics construction safety',
+      'learning-development': 'safety training effectiveness construction',
+      'safety-culture': 'safety culture construction OSHA',
+      'human-factors': 'human factors fatigue construction accidents',
+      'risk-perception': 'risk perception construction workers',
+      'incident-prevention': 'incident prevention near miss construction',
+    };
+    if (pillarSearches[nextTopic.pillar]) {
+      queries.push(pillarSearches[nextTopic.pillar]);
+    }
+
+    // Search for the psychological concept directly
+    if (nextTopic.psychologicalConcept) {
+      const conceptShort = nextTopic.psychologicalConcept.split(/[.—,]/)[0].trim().slice(0, 80);
+      queries.push(`${conceptShort} research`);
+    }
+  } else {
+    // Fallback generic queries if no topic available
+    queries.push(
+      `OSHA citation construction ${monthYear}`,
+      `workplace safety psychology research`,
+    );
+  }
+
+  return queries;
+}
+
+// ---------------------------------------------------------------------------
+// Next Topic Loader — finds what the content engine will generate next
+// ---------------------------------------------------------------------------
+
+function loadNextTopic() {
+  const TOPIC_BANK_PATH = path.join(__dirname, 'topic-bank.json');
+  const SCHEDULE_PATH = path.join(__dirname, 'schedule.json');
+
+  if (!fs.existsSync(TOPIC_BANK_PATH)) return null;
+  const topics = JSON.parse(fs.readFileSync(TOPIC_BANK_PATH, 'utf-8'));
+
+  let nextDay = 1;
+  if (fs.existsSync(SCHEDULE_PATH)) {
+    const schedule = JSON.parse(fs.readFileSync(SCHEDULE_PATH, 'utf-8'));
+    const posts = schedule.posts || {};
+    for (let day = 1; day <= 180; day++) {
+      if (!posts[day] || posts[day].status !== 'published') {
+        nextDay = day;
+        break;
+      }
+    }
+  }
+
+  const topic = topics.find(t => t.day === nextDay);
+  if (topic) {
+    log(`Next topic: Day ${topic.day} — "${topic.title}" [${topic.pillar}]`);
+  }
+  return topic || null;
 }
 
 // ---------------------------------------------------------------------------
@@ -169,7 +231,7 @@ async function fetchAllFeeds() {
 // Web Search via Claude API
 // ---------------------------------------------------------------------------
 
-async function performWebSearch(anthropic) {
+async function performWebSearch(anthropic, nextTopic) {
   log('\n=== PHASE 2: Web Search ===');
 
   if (DRY_RUN) {
@@ -177,7 +239,7 @@ async function performWebSearch(anthropic) {
     return [];
   }
 
-  const queries = getSearchQueries();
+  const queries = getSearchQueries(nextTopic);
   const results = [];
 
   for (const query of queries) {
@@ -414,10 +476,11 @@ async function main() {
   }
 
   const anthropic = new Anthropic();
+  const nextTopic = loadNextTopic();
 
   try {
     const { items: feedItems, activeSources } = await fetchAllFeeds();
-    const searchItems = await performWebSearch(anthropic);
+    const searchItems = await performWebSearch(anthropic, nextTopic);
 
     const allItems = deduplicateItems([...feedItems, ...searchItems]);
     const allSources = [...activeSources];
