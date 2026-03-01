@@ -3,7 +3,9 @@
 ## What This Is
 Marketing website and automated content platform for SafetyTAP. Landing page sells the philosophy, daily blog builds SEO authority around safety psychology.
 
-**Stack:** Astro + Tailwind CSS + MDX blog, hosted on Vercel
+**Stack:** Astro + Tailwind CSS + MDX blog, @astrojs/vercel adapter
+**Live:** safetytap-website.vercel.app
+**GitHub:** github.com/btsparks/safetytap-website
 **Dev:** `npm run dev` → http://localhost:4321
 **Deploy:** Push to `main` on GitHub → Vercel auto-builds
 
@@ -17,7 +19,7 @@ The site runs a fully automated daily blog publishing pipeline:
 ```
 Topic Bank (topic-bank.json, 180 days)
     ↓
-Research Agent (research-agent.js) — scrapes RSS/news daily
+Research Agent (research-agent.js) — topic-aware RSS/web search daily
     ↓
 Content Engine (daily-generate.js) — picks next topic + research, writes post
     ↓
@@ -30,13 +32,30 @@ Calendar Dashboard (/admin/schedule) — view published + upcoming posts
 
 ### Key Files
 - `content-engine/topic-bank.json` — 180 scheduled topics organized by pillar and format
-- `content-engine/research-agent.js` — RSS scraper + news gatherer
-- `content-engine/research-feed.json` — Latest research findings (regenerated daily)
-- `content-engine/daily-generate.js` — Enhanced content engine for automated daily posts
-- `content-engine/generate.js` — Original manual generation script (still works)
+- `content-engine/research-agent.js` — Topic-aware RSS scraper + web search + Claude analysis
+- `content-engine/research-feed.json` — Latest research findings (regenerated daily, gitignored)
+- `content-engine/daily-generate.js` — Content engine with research integration + editorial notes
 - `content-engine/schedule.json` — Maps calendar dates to topic days, tracks status
-- `.github/workflows/daily-post.yml` — GitHub Actions cron job
+- `content-engine/init-schedule.js` — Initialize or view schedule status
+- `content-engine/generate.js` — Original manual generation script (still works)
+- `.github/workflows/daily-post.yml` — GitHub Actions cron job (6am ET / 11:00 UTC)
 - `src/pages/admin/schedule.astro` — Content calendar dashboard
+- `src/pages/api/save-note.ts` — API for saving editorial notes
+- `src/pages/api/upload-image.ts` — API for uploading hero images (sharp resize)
+
+### Research Agent — RSS Sources (5 active)
+- OSHA News Releases — `osha.gov/news/newsreleases.xml`
+- Safety+Health Magazine — `safetyandhealthmagazine.com/feed`
+- Construction Dive — `constructiondive.com/feeds/news/`
+- ISHN Construction Safety — `ishn.com/rss/topic/2193-construction-industry-safety-and-health`
+- ENR Safety — `enr.com/rss/topic/172-safety`
+
+Web searches are topic-aware: agent reads schedule, finds next topic, builds searches from keyword + pillar + psychological concept instead of generic queries.
+
+### Research → Article Integration
+- `findRelevantResearch()` filters by pillar match OR meaningful keyword match (stop words filtered)
+- Top 3 articles passed with directive to integrate each substantively
+- Each research item must be used as concrete example, data point, or real-world illustration
 
 ### Pillars (content categories)
 1. `hazard-recognition` — Perception, attention, scanning, pattern recognition
@@ -58,6 +77,14 @@ Calendar Dashboard (/admin/schedule) — view published + upcoming posts
 
 ---
 
+## Admin Dashboard (/admin/schedule)
+- **Status filters**: All / Published / Scheduled
+- **Detail panel**: Click any post for topic details, editorial notes, image upload
+- **Editorial notes**: Guidance text fed to Claude during generation
+- **Image upload**: Drag-and-drop, auto-resized to 1200x630 via sharp
+- **Vercel warning**: Amber banner on live site — editing requires localhost
+- **API routes**: `/api/save-note` (POST JSON), `/api/upload-image` (POST FormData)
+
 ## Brand Voice Rules
 - Write like a sharp construction professional who understands the psychology
 - The SYSTEM is broken, not the people — never blame workers
@@ -73,15 +100,21 @@ Calendar Dashboard (/admin/schedule) — view published + upcoming posts
 - **Layout:** Tailwind CSS utilities
 
 ## Important Constraints
-- Blog posts should work perfectly with or without hero images
-- Images will be added manually by Travis (real photos, not AI-generated)
-- The `heroImage` frontmatter field is optional — templates handle both cases
-- API keys stored as GitHub Secrets for the Actions pipeline
-- The content-engine/topics.json is the ORIGINAL 10 topics (kept for reference)
-- topic-bank.json is the new 180-day system
+- Must use @astrojs/vercel adapter (NOT @astrojs/node — causes 404 on Vercel)
+- Blog posts work with or without hero images — heroImage field is optional
+- Images added manually by Travis (real photos, not AI-generated)
+- Admin features (notes, image upload) only work on localhost — read-only on Vercel
+- All date math must use Date.UTC() — local time causes DST/timezone bugs
+- GitHub Actions workflow must use ESM imports (project is "type": "module")
+- research-feed.json is gitignored (regenerated daily)
 
-## GitHub Secrets Needed
-- `ANTHROPIC_API_KEY` — for Claude API calls in content generation and research agent
+## Schedule Status
+- **Start date**: 2026-02-26
+- **Published**: Days 1-4 (Day 3 auto-generated by GitHub Actions bot)
+- **Pipeline**: Confirmed working end-to-end
+
+## GitHub Secrets
+- `ANTHROPIC_API_KEY` — for Claude API calls in content generation and research agent (added)
 
 ## Running Locally
 ```bash
