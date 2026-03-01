@@ -54,7 +54,7 @@ const RSS_SOURCES = [
   {
     id: 'osha',
     name: 'OSHA News Releases',
-    url: 'https://www.osha.gov/news/newsreleases/feed',
+    url: 'https://www.osha.gov/news/newsreleases.xml',
   },
   {
     id: 'safety-health-mag',
@@ -67,9 +67,14 @@ const RSS_SOURCES = [
     url: 'https://www.constructiondive.com/feeds/news/',
   },
   {
-    id: 'ehs-today',
-    name: 'EHS Today',
-    url: 'https://www.ehstoday.com/rss',
+    id: 'ishn-construction',
+    name: 'ISHN Construction Safety',
+    url: 'https://www.ishn.com/rss/topic/2193-construction-industry-safety-and-health',
+  },
+  {
+    id: 'ehs-leaders',
+    name: 'EHS Leaders',
+    url: 'https://ehsleaders.org/feed/',
   },
 ];
 
