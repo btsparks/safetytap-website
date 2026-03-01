@@ -12,7 +12,9 @@
       "generatedAt": "2026-02-26T20:16:51.010Z",
       "hadResearchIntegration": false,
       "editorialNote": "Test note for stress testing",
-      "noteUpdatedAt": "2026-02-26T21:25:21.189Z"
+      "noteUpdatedAt": "2026-02-26T21:25:21.189Z",
+      "heroImage": "/images/blog/why-experienced-crews-walk-past-hazards.jpg",
+      "imageUploadedAt": "2026-02-26T22:58:26.763Z"
     },
     "2": {
       "slug": "normalcy-bias-why-crews-dont-evacuate",
@@ -33,6 +35,17 @@
       "format": "myth-buster",
       "status": "published",
       "generatedAt": "2026-02-28T11:31:43.078Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
+    },
+    "4": {
+      "slug": "how-safety-habits-actually-form",
+      "title": "66 Days to Automatic: How Safety Habits Actually Form on the Jobsite",
+      "date": "2026-03-01",
+      "pillar": "learning-development",
+      "format": "research-spotlight",
+      "status": "published",
+      "generatedAt": "2026-03-01T04:44:09.339Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
     }
