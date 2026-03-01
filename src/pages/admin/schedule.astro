@@ -170,15 +170,6 @@ const calendarJSON = JSON.stringify(calendarItems);
       <button data-filter="all" class="filter-btn active text-xs px-3 py-1 rounded-full bg-navy text-white font-medium transition-colors">All</button>
       <button data-filter="published" class="filter-btn text-xs px-3 py-1 rounded-full bg-gray-200 text-dark/70 font-medium transition-colors hover:bg-gray-300">Published</button>
       <button data-filter="scheduled" class="filter-btn text-xs px-3 py-1 rounded-full bg-gray-200 text-dark/70 font-medium transition-colors hover:bg-gray-300">Scheduled</button>
-      <span class="mx-2 text-gray-300">|</span>
-      <button data-pillar="hazard-recognition" class="pillar-btn text-xs px-3 py-1 rounded-full bg-teal/10 text-teal font-medium transition-colors hover:bg-teal/20">Hazard Recognition</button>
-      <button data-pillar="cognitive-bias" class="pillar-btn text-xs px-3 py-1 rounded-full bg-amber-50 text-amber-600 font-medium transition-colors hover:bg-amber-100">Cognitive Bias</button>
-      <button data-pillar="crew-dynamics" class="pillar-btn text-xs px-3 py-1 rounded-full bg-blue-50 text-blue-600 font-medium transition-colors hover:bg-blue-100">Crew Dynamics</button>
-      <button data-pillar="learning-development" class="pillar-btn text-xs px-3 py-1 rounded-full bg-green-50 text-green-600 font-medium transition-colors hover:bg-green-100">Learning Development</button>
-      <button data-pillar="safety-culture" class="pillar-btn text-xs px-3 py-1 rounded-full bg-purple-50 text-purple-600 font-medium transition-colors hover:bg-purple-100">Safety Culture</button>
-      <button data-pillar="human-factors" class="pillar-btn text-xs px-3 py-1 rounded-full bg-red-50 text-red-600 font-medium transition-colors hover:bg-red-100">Human Factors</button>
-      <button data-pillar="risk-perception" class="pillar-btn text-xs px-3 py-1 rounded-full bg-orange-50 text-orange-600 font-medium transition-colors hover:bg-orange-100">Risk Perception</button>
-      <button data-pillar="incident-prevention" class="pillar-btn text-xs px-3 py-1 rounded-full bg-cyan-50 text-cyan-600 font-medium transition-colors hover:bg-cyan-100">Incident Prevention</button>
     </div>
   </section>
 
@@ -706,34 +697,9 @@ const calendarJSON = JSON.stringify(calendarItems);
       });
       btn.classList.add('active', 'bg-navy', 'text-white');
       btn.classList.remove('bg-gray-200', 'text-dark/70');
-      document.querySelectorAll('.pillar-btn').forEach(b => b.classList.remove('ring-2'));
       document.querySelectorAll('.calendar-row').forEach(row => {
         (row).style.display = filter === 'all' ? '' : (row.getAttribute('data-status') === filter ? '' : 'none');
       });
-      updateMonthCounts();
-    });
-  });
-
-  document.querySelectorAll('.pillar-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const pillar = btn.getAttribute('data-pillar');
-      const isActive = btn.classList.contains('ring-2');
-      document.querySelectorAll('.pillar-btn').forEach(b => b.classList.remove('ring-2'));
-      document.querySelectorAll('.filter-btn').forEach(b => {
-        b.classList.remove('active', 'bg-navy', 'text-white');
-        b.classList.add('bg-gray-200', 'text-dark/70');
-      });
-      if (isActive) {
-        document.querySelectorAll('.calendar-row').forEach(row => { (row).style.display = ''; });
-        const allBtn = document.querySelector('[data-filter="all"]');
-        allBtn?.classList.add('active', 'bg-navy', 'text-white');
-        allBtn?.classList.remove('bg-gray-200', 'text-dark/70');
-      } else {
-        btn.classList.add('ring-2');
-        document.querySelectorAll('.calendar-row').forEach(row => {
-          (row).style.display = row.getAttribute('data-pillar') === pillar ? '' : 'none';
-        });
-      }
       updateMonthCounts();
     });
   });
