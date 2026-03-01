@@ -140,7 +140,9 @@ function loadResearchFeed() {
 function findRelevantResearch(topic, feed) {
   if (!feed || !feed.items) return [];
 
-  // Find articles that match this topic's pillar
+  // Filter out generic stop words that produce false-positive keyword matches
+  const stopWords = new Set(['safety', 'construction', 'workers', 'work', 'site', 'crew', 'training', 'the', 'and', 'for']);
+
   return feed.items
     .filter(item => {
       if (item.relevanceScore < 0.5) return false;
@@ -148,8 +150,11 @@ function findRelevantResearch(topic, feed) {
       const pillarMatch = item.relevancePillars?.some(p =>
         p === topic.pillar || p.includes(topic.pillar.split('-')[0])
       );
-      // Match on keyword overlap
-      const keywordMatch = topic.targetKeyword.split(' ').some(kw =>
+      // Match on keyword overlap — require a meaningful keyword (not a stop word)
+      const meaningfulKeywords = topic.targetKeyword.split(' ').filter(kw =>
+        kw.length > 3 && !stopWords.has(kw.toLowerCase())
+      );
+      const keywordMatch = meaningfulKeywords.some(kw =>
         item.title.toLowerCase().includes(kw) ||
         item.summary?.toLowerCase().includes(kw)
       );
@@ -181,11 +186,12 @@ ${editorialNote}`;
   }
 
   if (researchItems && researchItems.length > 0) {
-    brief += `\n\nRECENT RELEVANT NEWS (weave in naturally if applicable — do not force):`;
+    brief += `\n\nRECENT NEWS AND RESEARCH TO INTEGRATE:
+Each item below was selected because it connects to this topic. Reference each one substantively — use it as a concrete example, a supporting data point, or a real-world illustration of the concept. Do not reduce any item to a single throwaway sentence. Each should feel like it belongs in the narrative and adds credibility.`;
     researchItems.forEach((item, i) => {
-      brief += `\n${i + 1}. "${item.title}" — ${item.summary}`;
+      brief += `\n\n${i + 1}. "${item.title}" — ${item.summary}`;
       if (item.potentialAngles?.length > 0) {
-        brief += `\n   Possible angle: ${item.potentialAngles[0]}`;
+        brief += `\n   Suggested angle: ${item.potentialAngles[0]}`;
       }
     });
   }
