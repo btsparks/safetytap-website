@@ -81,8 +81,11 @@ export const POST: APIRoute = async ({ request }) => {
     });
   } catch (err: any) {
     console.error('Observe API error:', err?.message || err);
+    const debugMsg = process.env.NODE_ENV !== 'production'
+      ? err?.message || String(err)
+      : 'Something went wrong. Please try again.';
     return new Response(
-      JSON.stringify({ error: 'Something went wrong. Please try again.' }),
+      JSON.stringify({ error: debugMsg, _debug: err?.message }),
       { status: 500 }
     );
   }
