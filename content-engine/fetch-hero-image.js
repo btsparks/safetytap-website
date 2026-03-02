@@ -166,14 +166,15 @@ function updateMdxFrontmatter(slug, imagePath, credit) {
 
   // Add or replace heroImage
   if (content.includes('heroImage:')) {
-    content = content.replace(/heroImage:.*\n/, `heroImage: "${imagePath}"\n`);
+    content = content.replace(/heroImage:.*\r?\n/, `heroImage: "${imagePath}"\n`);
   } else {
-    content = content.replace(/---\n\n/, `heroImage: "${imagePath}"\n---\n\n`);
+    // Insert before closing --- (handle both \r\n and \n line endings)
+    content = content.replace(/---\r?\n\r?\n/, `heroImage: "${imagePath}"\n---\n\n`);
   }
 
   // Add or replace imageCredit
   if (content.includes('imageCredit:')) {
-    content = content.replace(/imageCredit:.*\n/, `imageCredit: "${credit}"\n`);
+    content = content.replace(/imageCredit:.*\r?\n/, `imageCredit: "${credit}"\n`);
   } else {
     // Insert after heroImage line
     content = content.replace(
