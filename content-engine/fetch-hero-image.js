@@ -7,10 +7,11 @@
 // and schedule.json. Never overwrites manually uploaded images.
 //
 // Usage:
-//   node content-engine/fetch-hero-image.js              # Latest post missing an image
-//   node content-engine/fetch-hero-image.js --day 3      # Specific day
-//   node content-engine/fetch-hero-image.js --backfill   # All posts missing images
-//   node content-engine/fetch-hero-image.js --dry-run    # Show search queries, don't fetch
+//   node content-engine/fetch-hero-image.js                  # Latest post missing an image
+//   node content-engine/fetch-hero-image.js --day 3          # Specific day
+//   node content-engine/fetch-hero-image.js --backfill       # All posts missing images
+//   node content-engine/fetch-hero-image.js --replace-pexels # Re-fetch all pexels images (not manual)
+//   node content-engine/fetch-hero-image.js --dry-run        # Show search queries, don't fetch
 //
 // ============================================================================
 
@@ -32,6 +33,7 @@ const QUALITY = 85;
 
 const DRY_RUN = process.argv.includes('--dry-run');
 const BACKFILL = process.argv.includes('--backfill');
+const REPLACE_PEXELS = process.argv.includes('--replace-pexels');
 const SPECIFIC_DAY = (() => {
   const idx = process.argv.indexOf('--day');
   return idx !== -1 ? parseInt(process.argv[idx + 1], 10) : null;
@@ -41,18 +43,21 @@ const SPECIFIC_DAY = (() => {
 // Pillar → Search Terms (tier 1 prefix for Pexels queries)
 // ---------------------------------------------------------------------------
 
+// Every query is anchored to "construction site" — Pexels returns off-topic
+// results (offices, parks, transit) without a strong construction qualifier.
+// All terms target U.S. commercial/industrial construction aesthetic.
 const PILLAR_SEARCH_TERMS = {
-  'hazard-recognition':   'construction worker safety hazard',
-  'cognitive-bias':       'construction worker thinking decision',
-  'crew-dynamics':        'construction crew teamwork',
-  'learning-development': 'construction worker training mentoring',
-  'safety-culture':       'construction site safety meeting',
-  'human-factors':        'construction worker fatigue stress',
-  'risk-perception':      'construction worker risk assessment',
-  'incident-prevention':  'construction site inspection safety',
+  'hazard-recognition':   'construction site hard hat worker inspecting',
+  'cognitive-bias':       'construction site workers looking up scaffolding',
+  'crew-dynamics':        'construction crew hard hats building site',
+  'learning-development': 'construction site apprentice training hard hat',
+  'safety-culture':       'construction site toolbox talk safety meeting',
+  'human-factors':        'construction worker hard hat break jobsite',
+  'risk-perception':      'construction site workers scaffolding height',
+  'incident-prevention':  'construction site safety inspection hard hat',
 };
 
-const GENERIC_FALLBACK = 'construction site safety workers';
+const GENERIC_FALLBACK = 'construction site workers hard hats building';
 
 // ---------------------------------------------------------------------------
 // Pexels API
@@ -208,8 +213,13 @@ function shouldSkip(day, schedule, topics) {
   if (!topic) return { skip: true, reason: 'no topic in bank' };
   if (!post || post.status !== 'published') return { skip: true, reason: 'not published' };
 
-  // Check schedule.json for manual upload (has imageUploadedAt = manual)
+  // Manual uploads are ALWAYS protected — never overwrite Travis's photos
   if (post.imageUploadedAt) return { skip: true, reason: 'manual image uploaded' };
+
+  // --replace-pexels: allow re-fetching pexels-sourced images
+  if (REPLACE_PEXELS && post.imageSource === 'pexels') {
+    return { skip: false }; // will overwrite
+  }
 
   // Check schedule.json for existing pexels image
   if (post.imageSource === 'pexels') return { skip: true, reason: 'pexels image already fetched' };
@@ -316,14 +326,16 @@ async function main() {
 
   console.log(`Topic bank: ${topics.length} topics`);
   console.log(`Schedule start: ${schedule.startDate}`);
-  if (DRY_RUN) console.log('Mode: DRY RUN (no images will be fetched)\n');
+  if (DRY_RUN) console.log('Mode: DRY RUN (no images will be fetched)');
+  if (REPLACE_PEXELS) console.log('Mode: REPLACE PEXELS (re-fetching auto-sourced images)');
+  console.log('');
 
   // Determine which days to process
   let days = [];
 
   if (SPECIFIC_DAY) {
     days = [SPECIFIC_DAY];
-  } else if (BACKFILL) {
+  } else if (REPLACE_PEXELS || BACKFILL) {
     // All published days missing images
     const posts = schedule.posts || {};
     for (const [dayStr, post] of Object.entries(posts)) {
