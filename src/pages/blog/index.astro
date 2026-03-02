@@ -22,11 +22,10 @@ const posts = (await getCollection('blog'))
         posts.map((post) => (
           <BlogCard
             title={post.data.title}
-            description={post.data.description}
             date={post.data.date}
             readTime={post.data.readTime}
             slug={post.slug}
-            tags={post.data.tags}
+            heroImage={post.data.heroImage}
           />
         ))
       ) : (
