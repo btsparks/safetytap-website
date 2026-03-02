@@ -208,7 +208,20 @@ Each item below was selected because it connects to this topic. Reference each o
   return response.content[0].text;
 }
 
-function buildFrontmatter(topic, publishDate) {
+async function generateTldr(anthropic, content, topic) {
+  const response = await anthropic.messages.create({
+    model: CLAUDE_MODEL,
+    max_tokens: 512,
+    system: 'You write TL;DR summaries for a construction safety blog. Write in the same voice as the article — sharp, direct, no jargon, no buzzwords. The summary should capture the core insight and the practical implication in 2-3 sentences. No labels, no "TL;DR:" prefix. Just the summary text.',
+    messages: [{
+      role: 'user',
+      content: `Summarize this article in 2-3 sentences for a busy safety manager or superintendent. Capture the key psychological concept and what it means on the jobsite.\n\nTitle: ${topic.title}\n\n${content}`,
+    }],
+  });
+  return response.content[0].text.trim();
+}
+
+function buildFrontmatter(topic, publishDate, tldr) {
   // Estimate read time based on format
   const readTimes = {
     'deep-dive': '6 min',
@@ -233,7 +246,7 @@ function buildFrontmatter(topic, publishDate) {
     ? topic.psychologicalConcept.slice(0, 152) + '...'
     : topic.psychologicalConcept;
 
-  return `---
+  let fm = `---
 title: "${topic.title.replace(/"/g, '\\"')}"
 description: "${description.replace(/"/g, '\\"')}"
 date: "${publishDate}"
@@ -242,8 +255,14 @@ readTime: "${readTime}"
 featured: ${topic.format === 'deep-dive'}
 seoKeywords: ${JSON.stringify([topic.targetKeyword])}
 pillar: "${topic.pillar}"
-format: "${topic.format}"
----`;
+format: "${topic.format}"`;
+
+  if (tldr) {
+    fm += `\ntldr: "${tldr.replace(/"/g, '\\"')}"`;
+  }
+
+  fm += '\n---';
+  return fm;
 }
 
 // ---------------------------------------------------------------------------
@@ -334,7 +353,17 @@ async function main() {
   console.log('\nGenerating post...');
 
   const content = await generatePost(anthropic, topic, relevantResearch, editorialNote);
-  const frontmatter = buildFrontmatter(topic, publishDate);
+
+  console.log('Generating TL;DR summary...');
+  let tldr = '';
+  try {
+    tldr = await generateTldr(anthropic, content, topic);
+    console.log(`TL;DR: ${tldr.slice(0, 80)}...`);
+  } catch (err) {
+    console.log(`TL;DR generation failed (non-fatal): ${err.message}`);
+  }
+
+  const frontmatter = buildFrontmatter(topic, publishDate, tldr);
   const fullContent = `${frontmatter}\n\n${content}\n`;
 
   // Ensure blog directory exists
