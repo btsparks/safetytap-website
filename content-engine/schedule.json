@@ -25,7 +25,11 @@
       "status": "published",
       "generatedAt": "2026-02-26T22:37:21.729Z",
       "hadResearchIntegration": false,
-      "hadEditorialNote": false
+      "hadEditorialNote": false,
+      "heroImage": "/images/blog/normalcy-bias-why-crews-dont-evacuate.jpg",
+      "imageSource": "pexels",
+      "imagePhotographer": "Ono  Kosuki",
+      "imageFetchedAt": "2026-03-02T02:17:21.228Z"
     },
     "3": {
       "slug": "bystander-effect-on-jobsites",
@@ -36,7 +40,11 @@
       "status": "published",
       "generatedAt": "2026-02-28T11:31:43.078Z",
       "hadResearchIntegration": true,
-      "hadEditorialNote": false
+      "hadEditorialNote": false,
+      "heroImage": "/images/blog/bystander-effect-on-jobsites.jpg",
+      "imageSource": "pexels",
+      "imagePhotographer": "Pixabay",
+      "imageFetchedAt": "2026-03-02T02:17:21.691Z"
     },
     "4": {
       "slug": "how-safety-habits-actually-form",
@@ -47,7 +55,11 @@
       "status": "published",
       "generatedAt": "2026-03-01T04:44:09.339Z",
       "hadResearchIntegration": true,
-      "hadEditorialNote": false
+      "hadEditorialNote": false,
+      "heroImage": "/images/blog/how-safety-habits-actually-form.jpg",
+      "imageSource": "pexels",
+      "imagePhotographer": "Sami  Abdullah",
+      "imageFetchedAt": "2026-03-02T02:17:22.197Z"
     }
   }
 }

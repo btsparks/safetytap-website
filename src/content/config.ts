@@ -13,6 +13,7 @@ const blog = defineCollection({
     pillar: z.string().optional(),
     format: z.string().optional(),
     heroImage: z.string().optional(),
+    imageCredit: z.string().optional(),
   }),
 });
 

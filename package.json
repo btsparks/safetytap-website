@@ -10,7 +10,8 @@
     "daily": "node content-engine/daily-generate.js",
     "research": "node content-engine/research-agent.js",
     "schedule": "node content-engine/init-schedule.js --status",
-    "schedule:init": "node content-engine/init-schedule.js"
+    "schedule:init": "node content-engine/init-schedule.js",
+    "hero-image": "node content-engine/fetch-hero-image.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.39.0",

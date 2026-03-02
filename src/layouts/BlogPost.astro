@@ -10,9 +10,10 @@ interface Props {
   seoKeywords?: string[];
   metaTitle?: string;
   heroImage?: string;
+  imageCredit?: string;
 }
 
-const { title, description, date, readTime, tags, seoKeywords = [], metaTitle, heroImage } = Astro.props;
+const { title, description, date, readTime, tags, seoKeywords = [], metaTitle, heroImage, imageCredit } = Astro.props;
 
 const formattedDate = new Date(date).toLocaleDateString('en-US', {
   year: 'numeric',
@@ -24,13 +25,16 @@ const formattedDate = new Date(date).toLocaleDateString('en-US', {
 <Base title={title} metaTitle={metaTitle} description={description} keywords={seoKeywords}>
   <article class="max-w-3xl mx-auto px-6 py-16 md:py-24">
     {heroImage && (
-      <div class="mb-8 -mx-6 md:mx-0 md:rounded-xl overflow-hidden">
-        <img
-          src={heroImage}
-          alt={title}
-          class="w-full h-auto object-cover max-h-[400px]"
-          loading="eager"
-        />
+      <div class="mb-8">
+        <div class="-mx-6 md:mx-0 md:rounded-xl overflow-hidden">
+          <img
+            src={heroImage}
+            alt={title}
+            class="w-full h-auto object-cover max-h-[400px]"
+            loading="eager"
+          />
+        </div>
+        {imageCredit && <p class="text-xs text-dark/30 mt-1.5">{imageCredit}</p>}
       </div>
     )}
     <header class="mb-10">
