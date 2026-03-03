@@ -116,6 +116,28 @@ Web searches are topic-aware: agent reads schedule, finds next topic, builds sea
 ## GitHub Secrets
 - `ANTHROPIC_API_KEY` — for Claude API calls in content generation and research agent (added)
 
+## Web Observation Tool (/try) — In Progress
+Free demo tool that lets website visitors experience SafetyTAP instantly. Purpose is audience growth, not revenue.
+
+### Architecture
+- `src/lib/system-prompt.ts` — Bot's full system prompt as TS constant (matches `SafetyTAP/system-prompt.txt`)
+- `src/pages/api/observe.ts` — Serverless API: accepts `{ image, mediaType, caption? }` base64 → Claude Sonnet 4.5 → `{ observation }`. prerender=false.
+- `src/pages/try.astro` — Interactive page (NEEDS REBUILD — see below)
+
+### Current status
+V1 shipped 2026-03-01 with file-upload UX. Rejected — too much friction. Backend API is solid and stays.
+
+### Approved rebuild plan
+Replace upload-first UX with **sample photo grid**: 3-4 pre-loaded construction photos visitors can tap to get an instant observation. Secondary "try your own photo" section below for users who want to test with their own image (camera-first on mobile via `capture="environment"`).
+
+**Flow**: Land → tap sample photo → see observation in seconds → "Want this for your crew?" CTA → /contact
+
+**Needs**: 3-4 real jobsite photos in `public/images/try/` (or public domain placeholders to start)
+
+### Key constraint
+- Photos processed in memory only, nothing stored — matches bot's privacy model
+- `ANTHROPIC_API_KEY` env var handles auth (already in Vercel secrets)
+
 ## Running Locally
 ```bash
 npm install

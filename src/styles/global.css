@@ -31,10 +31,149 @@
   animation: bounce-dot 1.2s ease-in-out infinite;
 }
 
+/* ====== How It Works: scrollytelling cross-fade ====== */
+
+/* Step text blocks — stacked in place, cross-fade with blur + lift */
+.hiw-step {
+  opacity: 0;
+  filter: blur(10px);
+  transform: translateY(20px) scale(0.97);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+              filter 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.hiw-step.is-active {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+/* Chat bubbles — spring physics slide up */
+.hiw-bubble {
+  opacity: 0;
+  transform: translateY(20px) scale(0.97);
+  transition: opacity 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+              transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.hiw-bubble.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Staggered bubble delays */
+.hiw-bubble[data-bubble="2"] { transition-delay: 0.12s; }
+.hiw-bubble[data-bubble="3"] { transition-delay: 0.2s; }
+.hiw-bubble:not(.is-visible) { transition-delay: 0s; }
+
+/* Analyzing pulse */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+.animate-pulse-text {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* iPhone frame — rim light + dynamic glow */
+.hiw-phone-frame {
+  position: relative;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.08) inset,
+    0 0 30px rgba(79,209,197,0.12),
+    0 25px 60px -10px rgba(0,0,0,0.7),
+    0 50px 100px -20px rgba(0,0,0,0.5);
+  transition: box-shadow 0.6s ease-out;
+  will-change: box-shadow;
+}
+
+.hiw-phone-frame::before {
+  content: '';
+  position: absolute;
+  left: -1px;
+  top: 15%;
+  bottom: 15%;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 255, 136, 0.2) 30%,
+    rgba(0, 255, 136, 0.2) 70%,
+    transparent 100%
+  );
+  border-radius: 1px;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.hiw-phone-frame.is-glowing {
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.08) inset,
+    0 0 50px rgba(79,209,197,0.25),
+    0 0 80px rgba(79,209,197,0.15),
+    0 25px 60px -10px rgba(0,0,0,0.7),
+    0 50px 100px -20px rgba(0,0,0,0.5);
+}
+
+/* Environmental background blobs */
+.hiw-blob-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hiw-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.12;
+  will-change: transform;
+}
+
+/* Scroll-to-explore indicator */
+#hiw-scroll-hint {
+  color: #4fd1c5;
+  opacity: 0.5;
+  transition: opacity 0.4s ease-out;
+  animation: hiw-hint-bob 2s ease-in-out infinite;
+}
+
+#hiw-scroll-hint.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes hiw-hint-bob {
+  0%, 100% { transform: translate(-50%, 0); }
+  50% { transform: translate(-50%, 6px); }
+}
+
+/* Progress track dots */
+.hiw-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hiw-dot.is-active {
+  background: #4fd1c5;
+  border-color: #4fd1c5;
+  box-shadow: 0 0 12px rgba(79, 209, 197, 0.4), 0 0 4px rgba(79, 209, 197, 0.6);
+}
+
 /* Respect prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
   .animate-blink,
-  .animate-bounce-dot {
+  .animate-bounce-dot,
+  .animate-pulse-text {
     animation: none;
   }
   [data-stagger],
@@ -42,5 +181,31 @@
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
+  }
+  .hiw-bubble {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .hiw-step {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .hiw-dot {
+    transition: none !important;
+  }
+  .hiw-blob {
+    transform: none !important;
+  }
+  #hiw-scroll-hint {
+    display: none;
+  }
+  .hiw-phone-frame {
+    transition: none !important;
+  }
+  .hiw-phone-frame::before {
+    display: none;
   }
 }

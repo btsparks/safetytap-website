@@ -14,72 +14,71 @@ const posts = (await getCollection('blog'))
   description="SafetyTAP builds hazard recognition skills in 30 seconds — no app, no training, just a photo and a text. Built for construction crews."
 >
 
-  <!-- Section 1: Hero -->
-  <section class="relative bg-navy-deep py-28 md:py-36 overflow-hidden text-white">
-    <div class="absolute inset-0 bg-gradient-to-br from-navy-deep via-navy to-navy-mid opacity-100 pointer-events-none"></div>
-    <div class="absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full bg-teal/10 blur-3xl pointer-events-none"></div>
-    <div class="relative z-10 max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
-      <div class="flex-1 max-w-2xl">
-        <h1 class="font-display text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-tight">Build Hazard Recognition Skills Your Crew Will Actually Use</h1>
-        <p class="mt-4 text-lg text-teal font-semibold tracking-wide uppercase">Think. Assess. Proceed.</p>
-        <p class="mt-4 text-lg md:text-xl text-white/80 leading-relaxed max-w-lg">In 30 seconds, your crew texts a photo and gets one specific safety observation back — the kind an experienced pro would make on-site. No app, no training, no friction.</p>
+  <!-- Section 1: Hero — z-stacked cinematic layout -->
+  <section class="relative block min-h-[80vh] overflow-hidden text-white" style="background-color: #0b1221">
 
-        <!-- [PLACEHOLDER — replace with real customer quote] -->
-        <div class="mt-6 border-l-2 border-teal/40 pl-4">
-          <p class="text-white/60 text-sm italic">"We saw a change in how crews talked about hazards within the first month."</p>
-          <p class="text-white/40 text-xs mt-1">— [PLACEHOLDER] Safety Director, Mid-size General Contractor</p>
-        </div>
+    <!-- Layer 1 (z-10): Hero image — absolute, right-aligned, CSS mask fade -->
+    <div
+      class="hidden md:block absolute top-0 right-0 bottom-0 w-[80%]"
+      style="z-index: 10; -webkit-mask-image: linear-gradient(to right, transparent 0%, transparent 20%, black 50%); mask-image: linear-gradient(to right, transparent 0%, transparent 20%, black 50%)"
+    >
+      <img
+        src="/images/send_it_to_safetytap.jpg"
+        alt="Construction worker in gloves holding a phone showing SafetyTAP on a job site"
+        class="w-full h-full object-cover"
+        style="object-position: 75% center; filter: brightness(0.85)"
+        loading="eager"
+      />
+      <!-- Bottom gradient fade into next section -->
+      <div class="absolute inset-x-0 bottom-0 h-40" style="background: linear-gradient(to top, #0b1221, transparent)"></div>
+    </div>
 
-        <div class="flex gap-4 mt-8">
-          <a href="/try"
-             class="inline-flex items-center gap-2 bg-teal hover:bg-teal-light
-                    text-white font-semibold text-base
-                    px-7 py-3.5 rounded-lg
-                    shadow-lg shadow-teal/20
-                    transition-all duration-200 hover:shadow-xl hover:shadow-teal/30 hover:-translate-y-0.5">
-            Try It Now
-          </a>
-          <a href="/contact"
-             class="inline-flex items-center gap-2
-                    border border-white/30 hover:border-white/60
-                    text-white/90 hover:text-white font-medium text-base
-                    px-7 py-3.5 rounded-lg
-                    transition-all duration-200 hover:bg-white/5 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-white/5">
-            Request a Demo
-          </a>
-        </div>
-      </div>
+    <!-- Layer 2 (z-20): Text content — vertically centered -->
+    <div class="relative flex items-center min-h-[80vh] px-6" style="z-index: 20">
+      <div class="max-w-6xl mx-auto w-full">
+        <div class="max-w-[600px]">
+          <h1 class="font-display text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-tight">Build Hazard Recognition Skills Your Crew Will Actually Use</h1>
+          <p class="mt-4 text-lg text-teal font-semibold tracking-wide uppercase">Think. Assess. Proceed.</p>
+          <p class="mt-4 text-lg md:text-xl text-white/80 leading-relaxed">In 30 seconds, your crew texts a photo and gets one specific safety observation back — the kind an experienced pro would make on-site. No app, no training, no friction.</p>
 
-      <!-- #1: Animated chat conversation -->
-      <div class="flex-1 max-w-sm">
-        <div id="chat-demo" class="bg-navy-mid/80 backdrop-blur-sm border border-white/10 border-t-white/20 rounded-2xl shadow-2xl p-4">
-          <div class="bg-dark/50 rounded-xl p-4 space-y-3 min-h-[180px]">
-            <!-- Worker message -->
-            <div id="chat-worker" class="flex justify-end opacity-0 transition-opacity duration-300 ease-in-out">
-              <div class="bg-teal/20 text-white/90 rounded-xl rounded-br-sm px-4 py-2 text-sm max-w-[240px]">
-                <span id="chat-worker-text"></span><span id="chat-cursor" class="inline-block w-[2px] h-[14px] bg-white/60 ml-0.5 animate-blink align-middle"></span>
-              </div>
-            </div>
-            <!-- Typing indicator -->
-            <div id="chat-typing" class="flex justify-start opacity-0 transition-opacity duration-300 ease-in-out">
-              <div class="bg-white/10 rounded-xl rounded-bl-sm px-4 py-3">
-                <div class="flex gap-1.5">
-                  <span class="w-1.5 h-1.5 bg-white/40 rounded-full animate-bounce-dot"></span>
-                  <span class="w-1.5 h-1.5 bg-white/40 rounded-full animate-bounce-dot" style="animation-delay: 0.15s"></span>
-                  <span class="w-1.5 h-1.5 bg-white/40 rounded-full animate-bounce-dot" style="animation-delay: 0.3s"></span>
-                </div>
-              </div>
-            </div>
-            <!-- SafetyTAP response -->
-            <div id="chat-response" class="flex justify-start opacity-0 transition-opacity duration-500 ease-in-out">
-              <div class="bg-white/10 text-white/90 rounded-xl rounded-bl-sm px-4 py-2 text-sm max-w-[260px]">
-                <span id="chat-response-text"></span>
-                <p id="chat-tip" class="mt-2 text-white/60 text-xs opacity-0 transition-opacity duration-500"></p>
-              </div>
-            </div>
+          <!-- [PLACEHOLDER — replace with real customer quote] -->
+          <div class="mt-6 border-l-2 border-teal/40 pl-4">
+            <p class="text-white/60 text-sm italic">"We saw a change in how crews talked about hazards within the first month."</p>
+            <p class="text-white/40 text-xs mt-1">— [PLACEHOLDER] Safety Director, Mid-size General Contractor</p>
+          </div>
+
+          <div class="flex gap-4 mt-8">
+            <a href="/try"
+               class="inline-flex items-center gap-2 bg-teal hover:bg-teal-light
+                      text-white font-semibold text-base
+                      px-7 py-3.5 rounded-lg
+                      shadow-lg shadow-teal/20
+                      transition-all duration-200 hover:shadow-xl hover:shadow-teal/30 hover:-translate-y-0.5">
+              Try It Now
+            </a>
+            <a href="/contact"
+               class="inline-flex items-center gap-2
+                      border border-white/30 hover:border-white/60
+                      text-white/90 hover:text-white font-medium text-base
+                      px-7 py-3.5 rounded-lg
+                      transition-all duration-200 hover:bg-white/5 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-white/5">
+              Request a Demo
+            </a>
           </div>
         </div>
       </div>
+    </div>
+
+    <!-- Mobile: full-bleed image below text -->
+    <div class="md:hidden relative">
+      <div class="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#0b1221] to-transparent" style="z-index: 5"></div>
+      <img
+        src="/images/send_it_to_safetytap.jpg"
+        alt="Construction worker in gloves holding a phone showing SafetyTAP on a job site"
+        class="w-full h-64 object-cover"
+        style="object-position: right center; filter: brightness(0.85)"
+        loading="eager"
+      />
     </div>
   </section>
 
@@ -112,33 +111,220 @@ const posts = (await getCollection('blog'))
     </div>
   </section>
 
-  <!-- Section 4: How It Works — #4: Large step numbers + connector -->
-  <section id="how-it-works" class="py-16 md:py-24 bg-white" data-animate data-stagger-delay="0.15">
-    <div class="max-w-5xl mx-auto px-6">
-      <p class="text-sm font-semibold tracking-widest uppercase text-teal mb-3 text-center" data-stagger>How It Works</p>
-      <h2 class="font-display text-3xl md:text-4xl font-bold text-navy text-center leading-tight tracking-tight" data-stagger>30 seconds. One text. Zero friction.</h2>
-      <div class="mt-12 relative">
-        <!-- Connector line between steps (desktop only) -->
-        <div class="hidden md:block absolute top-[1.5rem] left-[20%] right-[20%] h-px bg-teal/20 z-0"></div>
-        <div class="grid md:grid-cols-3 gap-8 relative z-10">
-          <div class="text-center" data-stagger>
-            <p class="text-[3rem] font-extrabold text-teal/60 font-display leading-none select-none">01</p>
-            <h3 class="text-lg font-semibold leading-snug text-navy mt-3">Take a photo</h3>
-            <p class="text-dark/70 mt-2 text-base leading-relaxed">Worker snaps a photo of their task or work area. Takes 5 seconds.</p>
+  <!-- Section 4: How It Works — Scrollytelling sticky-track -->
+  <section id="how-it-works" class="relative" style="background-color: #0b1221;">
+
+    <!-- Environmental background blobs -->
+    <div class="hiw-blob-container">
+      <div class="hiw-blob" data-parallax-speed="0.03"
+           style="width: 600px; height: 600px; background: #4fd1c5; top: 5%; left: -10%;"></div>
+      <div class="hiw-blob" data-parallax-speed="-0.02"
+           style="width: 500px; height: 500px; background: #2A9D8F; top: 40%; right: -8%;"></div>
+      <div class="hiw-blob" data-parallax-speed="0.015"
+           style="width: 400px; height: 400px; background: linear-gradient(135deg, #4fd1c5, #2A9D8F); bottom: 10%; left: -5%;"></div>
+    </div>
+
+    <!-- Section header (mobile only — desktop header is inside sticky viewport) -->
+    <div class="md:hidden text-center px-6 pt-10 pb-4" style="max-width: 1200px; margin: 0 auto;">
+      <p class="text-sm font-semibold tracking-widest uppercase mb-3" style="color: #4fd1c5;">How It Works</p>
+      <h2 class="font-display text-3xl md:text-4xl font-bold text-white leading-tight tracking-tight">30 seconds. One text. Zero friction.</h2>
+    </div>
+
+    <!-- Desktop: Scrollytelling pinned-stage layout -->
+    <div id="hiw-track" class="hidden md:block relative" style="height: 220vh;">
+
+      <!-- Scroll sentinels (invisible, drive IntersectionObserver) -->
+      <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <div class="hiw-sentinel" data-step="1" style="height: 33.33%;"></div>
+        <div class="hiw-sentinel" data-step="2" style="height: 33.33%;"></div>
+        <div class="hiw-sentinel" data-step="3" style="height: 34%;"></div>
+      </div>
+
+      <!-- Sticky viewport — pinned below fixed nav for the full scroll track -->
+      <div class="sticky flex flex-col" style="top: 76px; height: calc(100vh - 76px); z-index: 1;">
+
+        <!-- Pinned section header (stays visible throughout all steps) -->
+        <div class="flex-shrink-0 text-center px-6 pt-6 pb-3 2xl:pt-8 2xl:pb-4" style="z-index: 2;">
+          <p class="text-sm font-semibold tracking-widest uppercase mb-2" style="color: #4fd1c5;">How It Works</p>
+          <h2 class="font-display text-3xl md:text-4xl font-bold text-white leading-tight tracking-tight">30 seconds. One text. Zero friction.</h2>
+        </div>
+
+        <!-- Content row (fills remaining space below header) -->
+        <div class="flex items-start flex-1 w-full px-6 gap-8 2xl:gap-12 pt-2" style="max-width: 1400px; margin: 0 auto;">
+
+          <!-- Progress Track -->
+          <div class="flex-shrink-0 relative self-stretch" style="width: 48px;">
+            <!-- Background line -->
+            <div class="absolute left-1/2 -translate-x-1/2 w-[2px] h-full rounded-full" style="background: rgba(255,255,255,0.08);"></div>
+            <!-- Fill line -->
+            <div id="hiw-fill" class="absolute left-1/2 -translate-x-1/2 w-[2px] rounded-full" style="background: #4fd1c5; height: 0%; top: 0; transition: height 0.35s ease-out;"></div>
+            <!-- Step dots -->
+            <div class="hiw-dot absolute left-1/2 -translate-x-1/2 -translate-y-1/2" data-dot="1" style="top: 0%;"></div>
+            <div class="hiw-dot absolute left-1/2 -translate-x-1/2 -translate-y-1/2" data-dot="2" style="top: 50%;"></div>
+            <div class="hiw-dot absolute left-1/2 -translate-x-1/2 -translate-y-1/2" data-dot="3" style="top: 100%;"></div>
           </div>
-          <div class="text-center" data-stagger>
-            <p class="text-[3rem] font-extrabold text-teal/60 font-display leading-none select-none">02</p>
-            <h3 class="text-lg font-semibold leading-snug text-navy mt-3">Send it to SafetyTAP</h3>
-            <p class="text-dark/70 mt-2 text-base leading-relaxed">Text the photo to SafetyTAP on Telegram. No app to download, no account to create.</p>
+
+          <!-- Text Stage (all 3 steps stacked, cross-fade in place) -->
+          <div class="relative self-stretch" style="flex: 1 1 40%; max-width: 520px;">
+            <div class="hiw-step absolute inset-0 flex flex-col justify-center" data-step="1">
+              <p class="text-7xl md:text-8xl font-extrabold font-display leading-none select-none" style="color: #4fd1c5;">01</p>
+              <h3 class="text-2xl md:text-4xl font-bold text-white mt-2 leading-tight">Take a photo</h3>
+              <p class="text-white/55 mt-3 text-base md:text-lg leading-relaxed max-w-sm">Snap a photo of the task or work area. Five seconds. No special app — just the phone camera they already carry.</p>
+            </div>
+            <div class="hiw-step absolute inset-0 flex flex-col justify-center" data-step="2">
+              <p class="text-7xl md:text-8xl font-extrabold font-display leading-none select-none" style="color: #4fd1c5;">02</p>
+              <h3 class="text-2xl md:text-4xl font-bold text-white mt-2 leading-tight">Send it to SafetyTAP</h3>
+              <p class="text-white/55 mt-3 text-base md:text-lg leading-relaxed max-w-sm">Text the photo on Telegram. No download, no account, no login. If they can send a text, they can use it.</p>
+            </div>
+            <div class="hiw-step absolute inset-0 flex flex-col justify-center" data-step="3">
+              <p class="text-7xl md:text-8xl font-extrabold font-display leading-none select-none" style="color: #4fd1c5;">03</p>
+              <h3 class="text-2xl md:text-4xl font-bold text-white mt-2 leading-tight">Get one observation</h3>
+              <p class="text-white/55 mt-3 text-base md:text-lg leading-relaxed max-w-sm">In seconds, one specific thing to check — the kind of call an experienced safety pro would make standing right next to you.</p>
+            </div>
           </div>
-          <div class="text-center" data-stagger>
-            <p class="text-[3rem] font-extrabold text-teal/60 font-display leading-none select-none">03</p>
-            <h3 class="text-lg font-semibold leading-snug text-navy mt-3">Get one specific observation</h3>
-            <p class="text-dark/70 mt-2 text-base leading-relaxed">In seconds, SafetyTAP responds with one thing to check — the kind of observation an experienced safety pro would make standing next to you.</p>
+
+          <!-- Phone mockup -->
+          <div class="flex-shrink-0 flex justify-center items-center">
+
+            <!-- iPhone device frame -->
+            <div id="hiw-phone" class="hiw-phone-frame relative flex flex-col"
+                 style="width: 340px; height: 80vh; max-height: 720px;
+                        background: #1a1a1a;
+                        border-radius: 50px;
+                        padding: 12px;">
+
+              <!-- Side buttons -->
+              <div class="absolute -right-[2px] top-[120px] w-[3px] h-[44px] bg-[#2a2a2a] rounded-r-sm"></div>
+              <div class="absolute -left-[2px] top-[95px] w-[3px] h-[28px] bg-[#2a2a2a] rounded-l-sm"></div>
+              <div class="absolute -left-[2px] top-[135px] w-[3px] h-[44px] bg-[#2a2a2a] rounded-l-sm"></div>
+              <div class="absolute -left-[2px] top-[190px] w-[3px] h-[44px] bg-[#2a2a2a] rounded-l-sm"></div>
+
+              <!-- Screen area -->
+              <div class="relative flex-1 flex flex-col rounded-[38px] overflow-hidden bg-[#1a1a2e]">
+
+                <!-- Dynamic Island -->
+                <div class="absolute top-[10px] left-1/2 -translate-x-1/2 z-30 w-[100px] h-[28px] bg-black rounded-full"
+                     style="box-shadow: 0 0 0 1px rgba(255,255,255,0.05) inset;"></div>
+
+                <!-- Glass overlay -->
+                <div class="absolute inset-0 z-20 pointer-events-none rounded-[38px]"
+                     style="background:
+                       linear-gradient(125deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.04) 15%, transparent 40%),
+                       linear-gradient(235deg, transparent 60%, rgba(255,255,255,0.03) 85%, rgba(255,255,255,0.06) 100%);"></div>
+
+                <!-- Dark-mode Telegram header -->
+                <div class="relative z-10 flex items-center gap-3 px-4 pt-[44px] pb-3" style="background: #1e2c3a;">
+                  <svg class="w-5 h-5 text-white/70" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
+                  <div class="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0" style="background: #2A9D8F;">
+                    <img src="/logo-icon.svg" alt="" class="w-5 h-5" />
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <div class="flex items-center gap-2">
+                      <p class="text-white text-[15px] font-semibold leading-tight">SafetyTAP</p>
+                      <span class="text-[10px] font-medium px-1.5 py-0.5 rounded text-white/70" style="background: rgba(255,255,255,0.1);">bot</span>
+                    </div>
+                    <p class="text-white/40 text-xs leading-tight mt-0.5">last seen recently</p>
+                  </div>
+                </div>
+
+                <!-- Chat body: additive bubbles synced to scroll -->
+                <div id="hiw-chat-body" class="relative z-10 flex-1 overflow-hidden p-3.5" style="background: #0e1621;">
+
+                  <!-- Bubble 1: Photo message (visible on step 1+) -->
+                  <div class="hiw-bubble flex justify-end mb-3" data-bubble="1">
+                    <div class="rounded-2xl rounded-tr-sm p-1.5 shadow-md" style="max-width: 88%; background: #2b5278;">
+                      <img src="/images/take_a_photo.jpg" alt="Jobsite photo" class="w-full rounded-xl object-cover" style="max-height: 200px;" loading="lazy" />
+                      <p class="text-[13px] text-white/90 mt-1.5 px-2 leading-snug">Check this area before we start</p>
+                      <p class="text-[11px] text-white/40 text-right mt-0.5 px-2">9:41 AM <span class="ml-0.5">&#10003;&#10003;</span></p>
+                    </div>
+                  </div>
+
+                  <!-- Bubble 2: Typing indicator (visible on step 2 only) -->
+                  <div class="hiw-bubble flex justify-start mb-3" data-bubble="2">
+                    <div>
+                      <div class="rounded-2xl rounded-tl-sm px-4 py-3 shadow-md" style="background: #182533;">
+                        <div class="flex gap-1.5 items-center">
+                          <span class="w-[7px] h-[7px] rounded-full animate-bounce-dot" style="background: #4fd1c5;"></span>
+                          <span class="w-[7px] h-[7px] rounded-full animate-bounce-dot" style="background: #4fd1c5; animation-delay: 0.15s;"></span>
+                          <span class="w-[7px] h-[7px] rounded-full animate-bounce-dot" style="background: #4fd1c5; animation-delay: 0.3s;"></span>
+                        </div>
+                      </div>
+                      <p class="text-[12px] text-center mt-2 animate-pulse-text" style="color: #4fd1c5;">SafetyTAP is analyzing...</p>
+                    </div>
+                  </div>
+
+                  <!-- Bubble 3: AI observation response (visible on step 3) -->
+                  <div class="hiw-bubble flex justify-start" data-bubble="3">
+                    <div class="rounded-2xl rounded-tl-sm p-3.5 shadow-md" style="max-width: 92%; background: #182533;">
+                      <p class="text-[14px] leading-relaxed" style="color: #e1e1e1;">Trip hazard at the western access point — ensure rebar caps are in place and all tools are stored clear of the walking path before the crew moves through.</p>
+                      <p class="text-[11px] text-right mt-2" style="color: rgba(255,255,255,0.3);">9:41 AM</p>
+                    </div>
+                  </div>
+
+                </div>
+
+                <!-- Chat input bar -->
+                <div class="relative z-10 flex items-center gap-2 px-3 py-2.5" style="background: #1e2c3a;">
+                  <div class="flex-1 rounded-full px-4 py-2" style="background: #0e1621;">
+                    <p class="text-[13px]" style="color: rgba(255,255,255,0.3);">Message</p>
+                  </div>
+                  <div class="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0" style="background: #2A9D8F;">
+                    <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Scroll-to-explore indicator -->
+        <div id="hiw-scroll-hint" class="absolute flex flex-col items-center gap-1" style="bottom: 24px; left: 50%; transform: translateX(-50%);">
+          <span class="text-xs font-medium tracking-wider uppercase">Scroll</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile: stacked steps + static chat preview -->
+    <div class="md:hidden px-6 pb-10">
+      <div class="space-y-10 mt-6" style="max-width: 500px; margin: 0 auto;">
+        <div>
+          <p class="text-5xl font-extrabold font-display leading-none select-none" style="color: #4fd1c5;">01</p>
+          <h3 class="text-xl font-bold text-white mt-1">Take a photo</h3>
+          <p class="text-white/55 mt-2 text-base leading-relaxed">Snap a photo of the task or work area. Five seconds. No special app — just the phone camera they already carry.</p>
+        </div>
+        <div>
+          <p class="text-5xl font-extrabold font-display leading-none select-none" style="color: #4fd1c5;">02</p>
+          <h3 class="text-xl font-bold text-white mt-1">Send it to SafetyTAP</h3>
+          <p class="text-white/55 mt-2 text-base leading-relaxed">Text the photo on Telegram. No download, no account, no login. If they can send a text, they can use it.</p>
+        </div>
+        <div>
+          <p class="text-5xl font-extrabold font-display leading-none select-none" style="color: #4fd1c5;">03</p>
+          <h3 class="text-xl font-bold text-white mt-1">Get one observation</h3>
+          <p class="text-white/55 mt-2 text-base leading-relaxed">In seconds, one specific thing to check — the kind of call an experienced safety pro would make standing right next to you.</p>
+        </div>
+      </div>
+      <div class="rounded-2xl p-4 space-y-3 mt-8" style="max-width: 500px; margin: 0 auto; background: #0e1621;">
+        <div class="flex justify-end">
+          <div class="rounded-2xl rounded-tr-sm p-1.5 shadow-md" style="max-width: 85%; background: #2b5278;">
+            <img src="/images/take_a_photo.jpg" alt="Jobsite photo" class="w-full rounded-xl object-cover" style="max-height: 160px;" loading="lazy" />
+            <p class="text-sm mt-1 px-2 leading-snug" style="color: rgba(255,255,255,0.85);">Check this area before we start</p>
+          </div>
+        </div>
+        <div class="flex justify-start">
+          <div class="rounded-2xl rounded-tl-sm p-3 shadow-md" style="max-width: 90%; background: #182533;">
+            <p class="text-sm leading-relaxed" style="color: #e1e1e1;">Trip hazard at the western access point — ensure rebar caps are in place and all tools are stored clear of the walking path.</p>
           </div>
         </div>
       </div>
-      <p class="text-center text-dark/60 mt-8 text-base leading-relaxed">No app to download. No account to create. No training required. Just text the number.</p>
+    </div>
+
+    <!-- Bottom text -->
+    <div class="text-center px-6 pb-16">
+      <p class="text-white/40 text-base leading-relaxed">No app to download. No account to create. No training required.</p>
     </div>
   </section>
 
@@ -322,88 +508,8 @@ const posts = (await getCollection('blog'))
 </Base>
 
 <script>
-  // ===== #1: Animated Chat Conversation =====
+  // ===== Scroll-triggered staggered fade-ups =====
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const sleep = (ms) => new Promise(r => setTimeout(r, ms));
-
-  const WORKER_MSG = 'setting up scaffolding on the second floor, checking connections';
-  const RESPONSE_MSG = 'Connections look solid. Wind forecast for this afternoon is worth checking \u2014 standing scaffold above grade catches more lateral load than most people expect from a 15 mph gust.';
-  const TIP_MSG = 'Wind loads climb fast above ground level.';
-
-  async function runChatLoop() {
-    const workerEl = document.getElementById('chat-worker');
-    const workerText = document.getElementById('chat-worker-text');
-    const cursor = document.getElementById('chat-cursor');
-    const typingEl = document.getElementById('chat-typing');
-    const responseEl = document.getElementById('chat-response');
-    const responseText = document.getElementById('chat-response-text');
-    const tipEl = document.getElementById('chat-tip');
-
-    if (!workerEl) return;
-
-    // If reduced motion, show static content and stop
-    if (prefersReducedMotion) {
-      workerText.textContent = WORKER_MSG;
-      cursor.style.display = 'none';
-      workerEl.classList.remove('opacity-0');
-      responseText.textContent = RESPONSE_MSG;
-      responseEl.classList.remove('opacity-0');
-      tipEl.textContent = TIP_MSG;
-      tipEl.classList.remove('opacity-0');
-      return;
-    }
-
-    while (true) {
-      // Reset
-      workerEl.classList.add('opacity-0');
-      workerText.textContent = '';
-      cursor.style.display = 'inline-block';
-      typingEl.classList.add('opacity-0');
-      responseEl.classList.add('opacity-0');
-      responseText.textContent = '';
-      tipEl.textContent = '';
-      tipEl.classList.add('opacity-0');
-
-      await sleep(1000);
-
-      // Worker message types in
-      workerEl.classList.remove('opacity-0');
-      for (let i = 0; i < WORKER_MSG.length; i++) {
-        workerText.textContent += WORKER_MSG[i];
-        await sleep(35);
-      }
-      cursor.style.display = 'none';
-
-      await sleep(500);
-
-      // Typing indicator
-      typingEl.classList.remove('opacity-0');
-      await sleep(1500);
-      typingEl.classList.add('opacity-0');
-
-      await sleep(300);
-
-      // Response fades in
-      responseText.textContent = RESPONSE_MSG;
-      responseEl.classList.remove('opacity-0');
-
-      await sleep(800);
-
-      // Tip fades in
-      tipEl.textContent = TIP_MSG;
-      tipEl.classList.remove('opacity-0');
-
-      // Hold for 3s, then fade out
-      await sleep(3000);
-      workerEl.classList.add('opacity-0');
-      responseEl.classList.add('opacity-0');
-      await sleep(800);
-    }
-  }
-
-  runChatLoop();
-
-  // ===== #2: Scroll-triggered staggered fade-ups =====
   if (!prefersReducedMotion) {
     document.querySelectorAll('[data-animate]').forEach(section => {
       const staggerItems = section.querySelectorAll('[data-stagger]');
@@ -439,3 +545,169 @@ const posts = (await getCollection('blog'))
     document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
   }
 </script>
+
+<script>
+  // ===== How It Works: scrollytelling with IntersectionObserver + progress track =====
+  (() => {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isMobile = () => window.innerWidth < 768;
+
+    const steps = document.querySelectorAll('.hiw-step[data-step]');
+    const bubbles = document.querySelectorAll('.hiw-bubble[data-bubble]');
+    const sentinels = document.querySelectorAll('.hiw-sentinel[data-step]');
+    const track = document.getElementById('hiw-track');
+    const fill = document.getElementById('hiw-fill');
+    const dots = document.querySelectorAll('.hiw-dot[data-dot]');
+    const phone = document.getElementById('hiw-phone');
+    const section = document.getElementById('how-it-works');
+    const blobs = document.querySelectorAll('.hiw-blob[data-parallax-speed]');
+    const scrollHint = document.getElementById('hiw-scroll-hint');
+
+    if (!steps.length || !bubbles.length) return;
+
+    // Mobile: show everything, no scroll sync
+    if (isMobile()) {
+      bubbles.forEach(b => b.classList.add('is-visible'));
+      return;
+    }
+
+    let activeStep = '0';
+    let glowTimer = null;
+
+    function activate(id) {
+      if (id === activeStep) return;
+      activeStep = id;
+      const stepNum = parseInt(id);
+
+      // Cross-fade text: only active step materializes
+      steps.forEach(s => {
+        s.classList.toggle('is-active', s.dataset.step === id);
+      });
+
+      // Additive bubbles synced to phone
+      bubbles.forEach(b => {
+        const bNum = parseInt(b.dataset.bubble);
+        if (bNum === 1) {
+          b.classList.toggle('is-visible', stepNum >= 1);
+        } else if (bNum === 2) {
+          b.classList.toggle('is-visible', stepNum === 2);
+        } else if (bNum === 3) {
+          b.classList.toggle('is-visible', stepNum >= 3);
+        }
+      });
+
+      // Dynamic glow pulse on step change
+      if (phone && !reducedMotion) {
+        clearTimeout(glowTimer);
+        phone.classList.add('is-glowing');
+        glowTimer = setTimeout(() => phone.classList.remove('is-glowing'), 800);
+      }
+    }
+
+    // --- IntersectionObserver: step activation via sentinels ---
+    // Sentinels are invisible divs that flow normally in the 250vh track.
+    // Multiple thresholds for precise detection.
+    const sentinelState = new Map();
+
+    const stepObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          sentinelState.set(e.target.dataset.step, e.intersectionRatio);
+        } else {
+          sentinelState.delete(e.target.dataset.step);
+        }
+      });
+
+      // Activate the sentinel with the highest intersection ratio
+      let bestStep = null;
+      let bestRatio = -1;
+      sentinelState.forEach((ratio, step) => {
+        if (ratio > bestRatio) {
+          bestRatio = ratio;
+          bestStep = step;
+        }
+      });
+
+      if (bestStep) activate(bestStep);
+    }, {
+      threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+      rootMargin: '-25% 0px -25% 0px'
+    });
+
+    sentinels.forEach(s => stepObserver.observe(s));
+
+    // --- Scroll-driven progress track + step fallback ---
+    function updateProgress() {
+      if (!track || !fill) return;
+      const rect = track.getBoundingClientRect();
+      const scrolled = -rect.top;
+      const maxScroll = track.offsetHeight - window.innerHeight;
+      const progress = Math.max(0, Math.min(1, scrolled / maxScroll));
+
+      // Fill bar grows with scroll
+      fill.style.height = `${progress * 100}%`;
+
+      // Dots light up at their thresholds
+      dots.forEach(d => {
+        const dotStep = parseInt(d.dataset.dot);
+        const dotThreshold = (dotStep - 1) / 2; // 0, 0.5, 1.0
+        d.classList.toggle('is-active', progress >= dotThreshold);
+      });
+
+      // Scroll-position step detection (catches fast scrolls the observer misses)
+      const scrollStep = Math.min(3, Math.floor(progress * 3) + 1);
+      activate(String(scrollStep));
+    }
+
+    // --- Environmental blob parallax ---
+    function updateBlobs() {
+      if (!section || reducedMotion) return;
+      const sectionRect = section.getBoundingClientRect();
+      const viewportCenter = window.innerHeight / 2;
+      const offset = sectionRect.top + sectionRect.height / 2 - viewportCenter;
+
+      blobs.forEach(blob => {
+        const speed = parseFloat(blob.dataset.parallaxSpeed) || 0;
+        blob.style.transform = `translate3d(0, ${offset * speed}px, 0)`;
+      });
+    }
+
+    // --- Scroll-to-explore hint ---
+    function updateScrollHint() {
+      if (!scrollHint || !track) return;
+      const rect = track.getBoundingClientRect();
+      const scrolled = -rect.top;
+      scrollHint.classList.toggle('is-hidden', scrolled > 50);
+    }
+
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          updateProgress();
+          updateBlobs();
+          updateScrollHint();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+
+    // Initial state
+    activate('1');
+    updateProgress();
+
+    // Teardown on resize to mobile
+    let timer;
+    window.addEventListener('resize', () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        if (isMobile()) {
+          stepObserver.disconnect();
+          bubbles.forEach(b => b.classList.add('is-visible'));
+        }
+      }, 200);
+    });
+  })();
+</script>
+
