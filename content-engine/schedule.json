@@ -60,6 +60,17 @@
       "imageSource": "pexels",
       "imagePhotographer": "Mikael Blomkvist",
       "imageFetchedAt": "2026-03-02T02:25:38.460Z"
+    },
+    "5": {
+      "slug": "what-just-culture-actually-means",
+      "title": "Stop Blaming the Worker: What 'Just Culture' Actually Means for Construction",
+      "date": "2026-03-02",
+      "pillar": "safety-culture",
+      "format": "leadership-brief",
+      "status": "published",
+      "generatedAt": "2026-03-03T11:45:36.484Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
