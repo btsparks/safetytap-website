@@ -82,6 +82,17 @@
       "generatedAt": "2026-03-04T11:43:15.061Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "7": {
+      "slug": "risk-homeostasis-why-better-ppe-doesnt-always-help",
+      "title": "Why Better PPE Sometimes Makes Crews Less Safe (Not More)",
+      "date": "2026-03-04",
+      "pillar": "risk-perception",
+      "format": "deep-dive",
+      "status": "published",
+      "generatedAt": "2026-03-05T11:45:46.505Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
