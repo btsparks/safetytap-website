@@ -93,6 +93,17 @@
       "generatedAt": "2026-03-05T11:45:46.505Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "8": {
+      "slug": "swiss-cheese-model-explained-for-field",
+      "title": "Holes in the Cheese: How Multiple Small Failures Line Up to Cause Serious Incidents",
+      "date": "2026-03-05",
+      "pillar": "incident-prevention",
+      "format": "deep-dive",
+      "status": "published",
+      "generatedAt": "2026-03-06T11:43:53.765Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
