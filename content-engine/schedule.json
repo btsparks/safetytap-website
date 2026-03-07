@@ -104,6 +104,17 @@
       "generatedAt": "2026-03-06T11:43:53.765Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "9": {
+      "slug": "change-blindness-when-jobsite-shifts-overnight",
+      "title": "What Changed Overnight? How Change Blindness Hides New Hazards Every Morning",
+      "date": "2026-03-06",
+      "pillar": "hazard-recognition",
+      "format": "field-tip",
+      "status": "published",
+      "generatedAt": "2026-03-07T11:32:45.530Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
