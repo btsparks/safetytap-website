@@ -126,6 +126,17 @@
       "generatedAt": "2026-03-09T11:44:08.841Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "11": {
+      "slug": "psychological-safety-and-stop-work-authority",
+      "title": "Why Your Crew Won't Use Stop-Work Authority (Even When You Beg Them To)",
+      "date": "2026-03-08",
+      "pillar": "crew-dynamics",
+      "format": "leadership-brief",
+      "status": "published",
+      "generatedAt": "2026-03-11T11:45:32.004Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
