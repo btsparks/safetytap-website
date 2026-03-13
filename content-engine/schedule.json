@@ -137,6 +137,17 @@
       "generatedAt": "2026-03-11T11:45:32.004Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "12": {
+      "slug": "deliberate-practice-not-just-repetition",
+      "title": "10,000 Hours Isn't Enough: Why Repetition Without Feedback Doesn't Build Safer Workers",
+      "date": "2026-03-09",
+      "pillar": "learning-development",
+      "format": "research-spotlight",
+      "status": "published",
+      "generatedAt": "2026-03-13T11:42:40.664Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
