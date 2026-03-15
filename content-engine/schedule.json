@@ -148,6 +148,17 @@
       "generatedAt": "2026-03-13T11:42:40.664Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "13": {
+      "slug": "leading-indicators-vs-lagging-indicators",
+      "title": "Counting Injuries Is Like Driving by Looking in the Rearview Mirror",
+      "date": "2026-03-10",
+      "pillar": "safety-culture",
+      "format": "deep-dive",
+      "status": "published",
+      "generatedAt": "2026-03-15T11:39:07.077Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
