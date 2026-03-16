@@ -159,6 +159,17 @@
       "generatedAt": "2026-03-15T11:39:07.077Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "14": {
+      "slug": "distraction-and-task-switching-on-jobsites",
+      "title": "The Hidden Cost of \"Hey, Got a Minute?\" — Task Switching and Safety on the Jobsite",
+      "date": "2026-03-11",
+      "pillar": "human-factors",
+      "format": "incident-analysis",
+      "status": "published",
+      "generatedAt": "2026-03-16T11:57:48.029Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
