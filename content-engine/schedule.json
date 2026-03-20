@@ -170,6 +170,17 @@
       "generatedAt": "2026-03-16T11:57:48.029Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "15": {
+      "slug": "loss-aversion-framing-safety-as-protection",
+      "title": "Why \"Don't Lose Your Fingers\" Works Better Than \"Wear Your Gloves\"",
+      "date": "2026-03-12",
+      "pillar": "risk-perception",
+      "format": "field-tip",
+      "status": "published",
+      "generatedAt": "2026-03-20T11:42:50.208Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
