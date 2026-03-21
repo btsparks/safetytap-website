@@ -181,6 +181,17 @@
       "generatedAt": "2026-03-20T11:42:50.208Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "16": {
+      "slug": "near-miss-reporting-gold-mine",
+      "title": "The Near-Miss Gold Mine: Why the Incident That Almost Happened Is More Valuable Than the One That Did",
+      "date": "2026-03-13",
+      "pillar": "incident-prevention",
+      "format": "myth-buster",
+      "status": "published",
+      "generatedAt": "2026-03-21T11:35:21.672Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
