@@ -192,6 +192,17 @@
       "generatedAt": "2026-03-21T11:35:21.672Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "17": {
+      "slug": "visual-scanning-patterns-expert-vs-novice",
+      "title": "What a 20-Year Super Sees That a New Worker Doesn't: Expert Visual Scanning Patterns",
+      "date": "2026-03-14",
+      "pillar": "hazard-recognition",
+      "format": "research-spotlight",
+      "status": "published",
+      "generatedAt": "2026-03-23T11:56:50.045Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
