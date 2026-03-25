@@ -203,6 +203,17 @@
       "generatedAt": "2026-03-23T11:56:50.045Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "18": {
+      "slug": "anchoring-bias-first-number-you-hear",
+      "title": "The First Number You Hear Wins: How Anchoring Bias Corrupts Safety Estimates",
+      "date": "2026-03-15",
+      "pillar": "cognitive-bias",
+      "format": "field-tip",
+      "status": "published",
+      "generatedAt": "2026-03-25T11:53:14.565Z",
+      "hadResearchIntegration": false,
+      "hadEditorialNote": false
     }
   }
 }
