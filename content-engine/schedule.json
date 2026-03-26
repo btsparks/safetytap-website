@@ -214,6 +214,17 @@
       "generatedAt": "2026-03-25T11:53:14.565Z",
       "hadResearchIntegration": false,
       "hadEditorialNote": false
+    },
+    "19": {
+      "slug": "conformity-pressure-new-worker-first-week",
+      "title": "First Week on the Crew: How Conformity Pressure Overrides Safety Training",
+      "date": "2026-03-16",
+      "pillar": "crew-dynamics",
+      "format": "incident-analysis",
+      "status": "published",
+      "generatedAt": "2026-03-26T12:00:17.181Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
