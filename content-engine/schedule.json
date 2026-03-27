@@ -225,6 +225,17 @@
       "generatedAt": "2026-03-26T12:00:17.181Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "20": {
+      "slug": "mentoring-vs-supervision-difference",
+      "title": "Your Best Safety Tool Isn't a Checklist — It's a Good Mentor",
+      "date": "2026-03-17",
+      "pillar": "learning-development",
+      "format": "leadership-brief",
+      "status": "published",
+      "generatedAt": "2026-03-27T11:53:18.481Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
