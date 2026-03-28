@@ -236,6 +236,17 @@
       "generatedAt": "2026-03-27T11:53:18.481Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "21": {
+      "slug": "safety-climate-vs-safety-culture",
+      "title": "Safety Culture Is What You Do When Nobody's Watching. So What Is Safety Climate?",
+      "date": "2026-03-18",
+      "pillar": "safety-culture",
+      "format": "myth-buster",
+      "status": "published",
+      "generatedAt": "2026-03-28T11:40:31.654Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
