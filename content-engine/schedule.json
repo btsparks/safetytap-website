@@ -247,6 +247,17 @@
       "generatedAt": "2026-03-28T11:40:31.654Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "22": {
+      "slug": "stress-and-tunnel-vision-in-emergencies",
+      "title": "When Your Brain Narrows: How Stress Creates Tunnel Vision in Construction Emergencies",
+      "date": "2026-03-19",
+      "pillar": "human-factors",
+      "format": "deep-dive",
+      "status": "published",
+      "generatedAt": "2026-03-29T11:43:55.952Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
