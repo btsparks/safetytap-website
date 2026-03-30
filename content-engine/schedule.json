@@ -258,6 +258,17 @@
       "generatedAt": "2026-03-29T11:43:55.952Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "23": {
+      "slug": "framing-effects-how-you-present-risk-data",
+      "title": "Same Data, Different Decision: How Framing Effects Change the Way Crews Perceive Risk",
+      "date": "2026-03-20",
+      "pillar": "risk-perception",
+      "format": "research-spotlight",
+      "status": "published",
+      "generatedAt": "2026-03-30T12:03:57.195Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
