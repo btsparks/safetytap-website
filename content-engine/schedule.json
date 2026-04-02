@@ -269,6 +269,17 @@
       "generatedAt": "2026-03-30T12:03:57.195Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "24": {
+      "slug": "root-cause-analysis-beyond-worker-error",
+      "title": "\"Human Error\" Is Never the Root Cause: How to Dig Deeper After an Incident",
+      "date": "2026-03-21",
+      "pillar": "incident-prevention",
+      "format": "leadership-brief",
+      "status": "published",
+      "generatedAt": "2026-04-02T11:56:36.425Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
