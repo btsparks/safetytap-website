@@ -280,6 +280,17 @@
       "generatedAt": "2026-04-02T11:56:36.425Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "25": {
+      "slug": "pattern-recognition-training-hazard-spotting",
+      "title": "Training Your Brain to See Danger: How Pattern Recognition Separates Good from Great Safety Performance",
+      "date": "2026-03-22",
+      "pillar": "hazard-recognition",
+      "format": "deep-dive",
+      "status": "published",
+      "generatedAt": "2026-04-04T11:41:07.017Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
