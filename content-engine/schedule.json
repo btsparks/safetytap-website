@@ -291,6 +291,17 @@
       "generatedAt": "2026-04-04T11:41:07.017Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "26": {
+      "slug": "dunning-kruger-effect-safety-competence",
+      "title": "The Dangerous Gap Between Confidence and Competence in Construction Safety",
+      "date": "2026-03-23",
+      "pillar": "cognitive-bias",
+      "format": "deep-dive",
+      "status": "published",
+      "generatedAt": "2026-04-07T12:03:02.766Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
