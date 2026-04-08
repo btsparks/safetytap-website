@@ -302,6 +302,17 @@
       "generatedAt": "2026-04-07T12:03:02.766Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "27": {
+      "slug": "groupthink-when-the-whole-crew-agrees-wrong",
+      "title": "When the Whole Crew Agrees on a Bad Plan: Groupthink in Construction Decision-Making",
+      "date": "2026-03-24",
+      "pillar": "crew-dynamics",
+      "format": "incident-analysis",
+      "status": "published",
+      "generatedAt": "2026-04-08T12:03:45.134Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
