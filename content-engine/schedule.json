@@ -324,6 +324,17 @@
       "generatedAt": "2026-04-09T12:03:35.298Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "29": {
+      "slug": "normalization-of-deviance-slow-drift",
+      "title": "The Slow Drift to Disaster: How Rule-Breaking Becomes Normal on Construction Sites",
+      "date": "2026-03-26",
+      "pillar": "safety-culture",
+      "format": "incident-analysis",
+      "status": "published",
+      "generatedAt": "2026-04-10T12:01:35.261Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
