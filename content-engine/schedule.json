@@ -335,6 +335,17 @@
       "generatedAt": "2026-04-10T12:01:35.261Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "30": {
+      "slug": "complacency-and-the-vigilance-decrement",
+      "title": "Day 200 on the Same Project: How Complacency Creeps In When Nothing Goes Wrong",
+      "date": "2026-03-27",
+      "pillar": "human-factors",
+      "format": "myth-buster",
+      "status": "published",
+      "generatedAt": "2026-04-11T11:42:48.840Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
