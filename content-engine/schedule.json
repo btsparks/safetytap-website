@@ -346,6 +346,17 @@
       "generatedAt": "2026-04-11T11:42:48.840Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "31": {
+      "slug": "risk-habituation-repeated-exposure",
+      "title": "The More You See a Hazard, the Less Dangerous It Feels: Risk Habituation Explained",
+      "date": "2026-03-28",
+      "pillar": "risk-perception",
+      "format": "deep-dive",
+      "status": "published",
+      "generatedAt": "2026-04-14T12:08:40.567Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
