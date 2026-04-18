@@ -368,6 +368,17 @@
       "generatedAt": "2026-04-17T12:02:16.073Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "33": {
+      "slug": "saliency-bias-dramatic-vs-common-hazards",
+      "title": "Why Crews Fear the Crane Collapse but Ignore the Tripping Hazard That Sends More People to the ER",
+      "date": "2026-03-30",
+      "pillar": "hazard-recognition",
+      "format": "myth-buster",
+      "status": "published",
+      "generatedAt": "2026-04-18T11:45:44.389Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
