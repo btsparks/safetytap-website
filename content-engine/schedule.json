@@ -379,6 +379,17 @@
       "generatedAt": "2026-04-18T11:45:44.389Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "34": {
+      "slug": "confirmation-bias-safety-inspections",
+      "title": "You Find What You Expect to Find: How Confirmation Bias Undermines Safety Inspections",
+      "date": "2026-03-31",
+      "pillar": "cognitive-bias",
+      "format": "research-spotlight",
+      "status": "published",
+      "generatedAt": "2026-04-19T11:48:50.957Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
