@@ -390,6 +390,17 @@
       "generatedAt": "2026-04-19T11:48:50.957Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "35": {
+      "slug": "social-proof-safety-behavior-spreads",
+      "title": "Safety Behavior Is Contagious: How Social Proof Shapes What Crews Actually Do",
+      "date": "2026-04-01",
+      "pillar": "crew-dynamics",
+      "format": "field-tip",
+      "status": "published",
+      "generatedAt": "2026-04-21T12:09:00.239Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
