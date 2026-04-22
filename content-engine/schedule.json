@@ -401,6 +401,17 @@
       "generatedAt": "2026-04-21T12:09:00.239Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "36": {
+      "slug": "transfer-of-training-problem",
+      "title": "Why Workers Ace the Safety Quiz and Then Get Hurt on the Jobsite: The Transfer Problem",
+      "date": "2026-04-02",
+      "pillar": "learning-development",
+      "format": "deep-dive",
+      "status": "published",
+      "generatedAt": "2026-04-22T12:08:32.485Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
