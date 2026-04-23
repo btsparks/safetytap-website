@@ -412,6 +412,17 @@
       "generatedAt": "2026-04-22T12:08:32.485Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "37": {
+      "slug": "safety-differently-approach",
+      "title": "Safety Differently: What Happens When You Stop Policing Workers and Start Learning from Them",
+      "date": "2026-04-03",
+      "pillar": "safety-culture",
+      "format": "leadership-brief",
+      "status": "published",
+      "generatedAt": "2026-04-23T12:10:29.713Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
