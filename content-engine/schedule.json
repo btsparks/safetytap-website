@@ -423,6 +423,17 @@
       "generatedAt": "2026-04-23T12:10:29.713Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "38": {
+      "slug": "decision-fatigue-end-of-day-shortcuts",
+      "title": "Why Shortcuts Multiply After Lunch: Decision Fatigue and the Safety Decisions Nobody Talks About",
+      "date": "2026-04-04",
+      "pillar": "human-factors",
+      "format": "research-spotlight",
+      "status": "published",
+      "generatedAt": "2026-04-25T11:49:12.579Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
