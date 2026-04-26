@@ -434,6 +434,17 @@
       "generatedAt": "2026-04-25T11:49:12.579Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "39": {
+      "slug": "probability-neglect-low-frequency-high-consequence",
+      "title": "It'll Never Happen to Us: Why Crews Dismiss Low-Probability, High-Consequence Events",
+      "date": "2026-04-05",
+      "pillar": "risk-perception",
+      "format": "incident-analysis",
+      "status": "published",
+      "generatedAt": "2026-04-26T11:50:42.875Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
