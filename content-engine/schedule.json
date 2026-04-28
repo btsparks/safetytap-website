@@ -445,6 +445,17 @@
       "generatedAt": "2026-04-26T11:50:42.875Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "40": {
+      "slug": "learning-from-incidents-vs-blame",
+      "title": "After the Ambulance Leaves: How to Run an Incident Review That Actually Prevents the Next One",
+      "date": "2026-04-06",
+      "pillar": "incident-prevention",
+      "format": "leadership-brief",
+      "status": "published",
+      "generatedAt": "2026-04-28T12:31:11.683Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
