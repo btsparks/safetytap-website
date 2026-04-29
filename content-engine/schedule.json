@@ -456,6 +456,17 @@
       "generatedAt": "2026-04-28T12:31:11.683Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "41": {
+      "slug": "selective-attention-cluttered-workspaces",
+      "title": "Your Brain Can Only See Five Things at Once: Selective Attention on Cluttered Jobsites",
+      "date": "2026-04-07",
+      "pillar": "hazard-recognition",
+      "format": "field-tip",
+      "status": "published",
+      "generatedAt": "2026-04-29T12:24:53.320Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
