@@ -467,6 +467,17 @@
       "generatedAt": "2026-04-29T12:24:53.320Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "42": {
+      "slug": "sunk-cost-fallacy-unsafe-work-methods",
+      "title": "\"We've Already Got It Set Up\" — How the Sunk Cost Fallacy Keeps Crews in Dangerous Situations",
+      "date": "2026-04-08",
+      "pillar": "cognitive-bias",
+      "format": "incident-analysis",
+      "status": "published",
+      "generatedAt": "2026-04-30T12:23:25.238Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
