@@ -478,6 +478,17 @@
       "generatedAt": "2026-04-30T12:23:25.238Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "43": {
+      "slug": "diffusion-of-responsibility-large-crews",
+      "title": "The Bigger the Crew, the Less Each Person Owns Safety: Diffusion of Responsibility Explained",
+      "date": "2026-04-09",
+      "pillar": "crew-dynamics",
+      "format": "research-spotlight",
+      "status": "published",
+      "generatedAt": "2026-05-20T13:50:21.211Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
