@@ -489,6 +489,17 @@
       "generatedAt": "2026-05-20T13:50:21.211Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "44": {
+      "slug": "scaffolding-instruction-gradual-release",
+      "title": "Scaffolding the Scaffolder: How Gradual Release of Responsibility Builds Safer Workers",
+      "date": "2026-04-10",
+      "pillar": "learning-development",
+      "format": "leadership-brief",
+      "status": "published",
+      "generatedAt": "2026-05-21T14:20:27.472Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
