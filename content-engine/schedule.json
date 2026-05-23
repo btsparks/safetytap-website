@@ -500,6 +500,17 @@
       "generatedAt": "2026-05-21T14:20:27.472Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "45": {
+      "slug": "reporting-culture-near-miss-silence",
+      "title": "Why 90% of Near-Misses Go Unreported (And What That Silence Is Costing Your Project)",
+      "date": "2026-04-11",
+      "pillar": "safety-culture",
+      "format": "deep-dive",
+      "status": "published",
+      "generatedAt": "2026-05-23T12:08:17.067Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
