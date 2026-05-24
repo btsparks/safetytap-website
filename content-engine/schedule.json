@@ -511,6 +511,17 @@
       "generatedAt": "2026-05-23T12:08:17.067Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "46": {
+      "slug": "circadian-rhythms-night-shift-construction",
+      "title": "Working Against the Clock: How Circadian Rhythms Make Night Shift Construction Riskier Than You Think",
+      "date": "2026-04-12",
+      "pillar": "human-factors",
+      "format": "incident-analysis",
+      "status": "published",
+      "generatedAt": "2026-05-24T12:10:07.495Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
