@@ -522,6 +522,17 @@
       "generatedAt": "2026-05-24T12:10:07.495Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "47": {
+      "slug": "dread-risk-vs-actual-risk-mismatch",
+      "title": "What We Dread vs. What Hurts Us: Why Construction Safety Budgets Don't Match Actual Risk",
+      "date": "2026-04-13",
+      "pillar": "risk-perception",
+      "format": "myth-buster",
+      "status": "published",
+      "generatedAt": "2026-05-25T14:18:56.542Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
