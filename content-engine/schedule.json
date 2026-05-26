@@ -533,6 +533,17 @@
       "generatedAt": "2026-05-25T14:18:56.542Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "48": {
+      "slug": "heinrich-domino-theory-limitations",
+      "title": "It's Time to Retire the Domino Theory: Why Heinrich's Model Gives Construction the Wrong Answers",
+      "date": "2026-04-14",
+      "pillar": "incident-prevention",
+      "format": "research-spotlight",
+      "status": "published",
+      "generatedAt": "2026-05-26T14:03:46.845Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
