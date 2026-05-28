@@ -544,6 +544,17 @@
       "generatedAt": "2026-05-26T14:03:46.845Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "49": {
+      "slug": "functional-fixedness-repurposed-tools",
+      "title": "When a Bucket Becomes a Step Stool: How Functional Fixedness Hides Improvised Hazards",
+      "date": "2026-04-15",
+      "pillar": "hazard-recognition",
+      "format": "field-tip",
+      "status": "published",
+      "generatedAt": "2026-05-28T14:46:31.562Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
