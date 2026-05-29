@@ -555,6 +555,17 @@
       "generatedAt": "2026-05-28T14:46:31.562Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "50": {
+      "slug": "affect-heuristic-gut-feeling-safety",
+      "title": "\"I've Got a Bad Feeling About This Lift\" — When Your Gut Is Right (and When It's Wrong)",
+      "date": "2026-04-16",
+      "pillar": "cognitive-bias",
+      "format": "deep-dive",
+      "status": "published",
+      "generatedAt": "2026-05-29T14:18:24.615Z",
+      "hadResearchIntegration": false,
+      "hadEditorialNote": false
     }
   }
 }
