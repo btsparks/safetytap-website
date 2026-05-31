@@ -566,6 +566,17 @@
       "generatedAt": "2026-05-29T14:18:24.615Z",
       "hadResearchIntegration": false,
       "hadEditorialNote": false
+    },
+    "51": {
+      "slug": "authority-gradient-questioning-the-super",
+      "title": "When the Super Says Go: Authority Gradients and the Safety Observations That Never Get Made",
+      "date": "2026-04-17",
+      "pillar": "crew-dynamics",
+      "format": "deep-dive",
+      "status": "published",
+      "generatedAt": "2026-05-31T12:20:05.710Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
