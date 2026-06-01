@@ -577,6 +577,17 @@
       "generatedAt": "2026-05-31T12:20:05.710Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "52": {
+      "slug": "self-efficacy-believing-you-can-work-safely",
+      "title": "If You Don't Believe You Can Work Safely, You Won't: Self-Efficacy and Safety Behavior",
+      "date": "2026-04-18",
+      "pillar": "learning-development",
+      "format": "research-spotlight",
+      "status": "published",
+      "generatedAt": "2026-06-01T16:48:53.513Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
