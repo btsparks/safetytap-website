@@ -588,6 +588,17 @@
       "generatedAt": "2026-06-01T16:48:53.513Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "53": {
+      "slug": "production-pressure-vs-safety-tension",
+      "title": "The Invisible Tug-of-War: How Production Pressure Quietly Wins Over Safety Every Day",
+      "date": "2026-04-19",
+      "pillar": "safety-culture",
+      "format": "incident-analysis",
+      "status": "published",
+      "generatedAt": "2026-06-02T15:03:16.084Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
