@@ -599,6 +599,17 @@
       "generatedAt": "2026-06-02T15:03:16.084Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "54": {
+      "slug": "heat-stress-cognitive-impairment",
+      "title": "Your Brain Overheats Before Your Body Does: The Cognitive Cost of Working in the Heat",
+      "date": "2026-04-20",
+      "pillar": "human-factors",
+      "format": "field-tip",
+      "status": "published",
+      "generatedAt": "2026-06-03T15:54:17.134Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
