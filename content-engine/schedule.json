@@ -610,6 +610,17 @@
       "generatedAt": "2026-06-03T15:54:17.134Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "55": {
+      "slug": "zero-risk-bias-eliminating-wrong-hazard",
+      "title": "The Zero-Risk Trap: Why Eliminating One Small Hazard Can Make the Whole Project Less Safe",
+      "date": "2026-04-21",
+      "pillar": "risk-perception",
+      "format": "leadership-brief",
+      "status": "published",
+      "generatedAt": "2026-06-04T14:12:26.732Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
