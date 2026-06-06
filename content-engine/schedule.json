@@ -621,6 +621,17 @@
       "generatedAt": "2026-06-04T14:12:26.732Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "56": {
+      "slug": "energy-based-hazard-recognition-model",
+      "title": "Follow the Energy: A Simple Mental Model That Makes Hazard Recognition Instinctive",
+      "date": "2026-04-22",
+      "pillar": "incident-prevention",
+      "format": "field-tip",
+      "status": "published",
+      "generatedAt": "2026-06-06T12:15:23.738Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
