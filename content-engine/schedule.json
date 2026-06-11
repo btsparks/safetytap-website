@@ -632,6 +632,17 @@
       "generatedAt": "2026-06-06T12:15:23.738Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "57": {
+      "slug": "environmental-cueing-workspace-design",
+      "title": "The Jobsite Is Talking to You: How Environmental Cues Shape Safety Behavior Without a Single Word",
+      "date": "2026-04-23",
+      "pillar": "hazard-recognition",
+      "format": "research-spotlight",
+      "status": "published",
+      "generatedAt": "2026-06-11T14:50:36.027Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
