@@ -643,6 +643,17 @@
       "generatedAt": "2026-06-11T14:50:36.027Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "58": {
+      "slug": "status-quo-bias-resistance-to-new-safety-methods",
+      "title": "\"We've Always Done It This Way\" — How Status Quo Bias Blocks Better Safety Practices",
+      "date": "2026-04-24",
+      "pillar": "cognitive-bias",
+      "format": "myth-buster",
+      "status": "published",
+      "generatedAt": "2026-06-12T14:16:48.760Z",
+      "hadResearchIntegration": true,
+      "hadEditorialNote": false
     }
   }
 }
