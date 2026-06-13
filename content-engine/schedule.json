@@ -654,6 +654,17 @@
       "generatedAt": "2026-06-12T14:16:48.760Z",
       "hadResearchIntegration": true,
       "hadEditorialNote": false
+    },
+    "59": {
+      "slug": "crew-cohesion-safety-communication",
+      "title": "The Crew That Eats Together Works Safer: How Team Cohesion Predicts Safety Outcomes",
+      "date": "2026-04-25",
+      "pillar": "crew-dynamics",
+      "format": "leadership-brief",
+      "status": "published",
+      "generatedAt": "2026-06-13T12:58:39.802Z",
+      "hadResearchIntegration": false,
+      "hadEditorialNote": false
     }
   }
 }
